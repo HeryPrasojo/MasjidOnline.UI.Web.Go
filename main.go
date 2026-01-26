@@ -75,9 +75,7 @@ var pageWithNavigationFiles = append(
 
 var pages = map[string]Page{
 	"/navigation": {
-		Data: PageData{
-			Title: "Home",
-		},
+		Data:     PageData{},
 		Template: template.Must(template.ParseFiles("navigation.html", "navigation-ls.html", "navigation-pt.html")),
 	},
 	"/": {
@@ -87,9 +85,7 @@ var pages = map[string]Page{
 		Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/home-js.html", "page/home-ls.html", "page/home-pt.html")...)),
 	},
 	"/-content": {
-		Data: PageData{
-			Title: "Home",
-		},
+		Data:     PageData{},
 		Template: template.Must(template.ParseFiles("content.html", "page/home-ls.html", "page/home-pt.html")),
 	},
 }
