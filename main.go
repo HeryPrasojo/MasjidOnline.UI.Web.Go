@@ -175,7 +175,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 		requestTag, _, _ := language.ParseAcceptLanguage(r.Header.Get("Accept-Language"))
 
 		selectedTag, _, _ := languageMatcher.Match(requestTag...)
-		fmt.Println("selectedTag: %s", selectedTag)
+		fmt.Println("selectedTag:", selectedTag)
 
 		locale = langs[langTags[selectedTag]]
 
