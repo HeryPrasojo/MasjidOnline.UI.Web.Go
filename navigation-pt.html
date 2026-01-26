@@ -1,0 +1,62 @@
+{{ define "navigation-pt" }}
+<nav id='navPortrait'>
+    <ul id='navPortraitList'>
+        <li class='navPortraitItem'>
+            <a href='/'>Home</a>
+        </li>
+        <li class='navPortraitItem'>
+            <a href='/about'>About</a>
+        </li>
+        <li class='navPortraitItem'>
+            <a href='/b'>b</a>
+        </li>
+        <li class='navPortraitItem'>
+            <a href='/c'>cc</a>
+        </li>
+        <li class='navPortraitItem' id='navPortraitTheRestHolder'>
+            <button type='button' id='navPortraitTheRestButton'>dd</button>
+            <ul class='display-none' id='navPortraitTheRest'>
+                <li class='navPortraitTheRestItem'>
+                    <a href='/e'>ee</a>
+                </li>
+                <li class='navPortraitTheRestItem'>
+                    <div id='navPortraitTheRestSubItemParent'>
+                        <div id='navPortraitTheRestSubItemParentInfaqText'>
+                            <a href='/infaq'>Infaq</a>
+                        </div>
+                        <div id='navPortraitTheRestSubItemParentInfaqButtonHolder'>
+                            <button type='button' id='navPortraitTheRestSubItemParentInfaqButton'>ff</button>
+                        </div>
+                    </div>
+                    <ul id='navPortraitTheRestSubItemHolder'>
+                        <li class='navPortraitTheRestSubItem'>
+                            <a href='/infaq/list'>List</a>
+                        </li>
+                        <li>
+                            <a href='/infaq/payment'>Payment</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='navPortraitTheRestItem'>
+                    <a href='/g'>gg</a>
+                </li>
+                {{ if eq .User.Type 1 }}
+                <li class='navPortraitTheRestItem' id='navPortraitLogin'>
+                    <a href='/login'>Login</a>
+                </li>
+                {{ end }}
+                {{ if eq .User.Type 1 }}
+                <li class='navPortraitTheRestItem' id='navPortraitRegister'>
+                    <a href='/user/register'>Signup</a>
+                </li>
+                {{ end }}
+                {{ if ne .User.Type 1 }}
+                <li class='navPortraitTheRestItem linkStyle loggedIn' id='navPortraitLogout'>
+                    <a>Logout</a>
+                </li>
+                {{ end }}
+            </ul>
+        </li>
+    </ul>
+</nav>
+{{ end }}

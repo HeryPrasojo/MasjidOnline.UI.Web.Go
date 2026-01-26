@@ -1,0 +1,232 @@
+body
+{
+    margin: 0;
+}
+
+#layout
+{}
+
+#flexLayout
+{
+    margin: 3em 0 2em 0;
+    min-height: 99vh;
+}
+
+#headerLayout
+{
+    display: flex;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    height: 3em;
+    width: 100%;
+}
+
+#title
+{
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+@media (orientation: landscape)
+{
+    #flexLayout
+    {
+        display: flex;
+    }
+
+    #navLandscapeParent
+    {
+        flex: 1 0 0;
+        overflow-y: auto;
+    }
+
+    #navLandscapeList
+    {
+        padding: 0;
+    }
+
+    #contentLayout
+    {
+        flex: 3 0 0;
+        overflow-y: auto;
+    }
+
+    #navPortraitParent
+    {
+        display: none;
+    }
+
+    #footerLayout
+    {
+        display: flex;
+        align-items: center;
+
+        position: fixed;
+        bottom: 0;
+        height: 2em;
+        width: 100%;
+
+        text-align: center;
+    }
+
+    #footerTitle
+    {
+        flex: 1 1 auto;
+        font-size: 0.8em;
+    }
+}
+
+@media (orientation: portrait)
+{
+    #navLandscapeParent
+    {
+        display: none;
+    }
+
+    #contentLayout
+    {
+        min-height: 100vh;
+    }
+
+    #navPortrait
+    {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #navPortraitList
+    {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        background-color: #00f;
+    }
+
+    .navPortraitItem
+    {
+        display: block;
+        flex: 1 1 auto;
+        background-color: #0f0;
+        text-align: center;
+        line-height: 2em;
+    }
+
+    .navPortraitItem:nth-child(1)
+    {
+        margin-left: 1em;
+    }
+
+    .navPortraitItem:nth-child(4)
+    {
+        margin-right: 1em;
+    }
+
+    .navPortraitItem > a
+    {
+        display: block;
+        background-color: #0ff;
+    }
+
+    #navPortraitTheRestHolder
+    {
+        background-color: #f0f;
+        flex: 0 0 3em;
+    }
+
+    #navPortraitTheRestButton
+    {
+        display: block;
+        padding: 0;
+        border: 0;
+        font-size: 1em;
+        width: 100%;
+        line-height: 2em;
+    }
+
+    #navPortraitTheRest
+    {
+        background-color: #ff0;
+        list-style: none;
+        position: fixed;
+        bottom: 2em;
+        right: 0;
+        padding: 0;
+        text-align: start;
+    }
+
+    .navPortraitTheRestItem > a
+    {
+        display: block;
+    }
+
+    #navPortraitTheRestSubItemParent
+    {
+        display: flex;
+    }
+
+    #navPortraitTheRestSubItemParentInfaqText
+    {
+        flex: 1 1 auto;
+    }
+
+    #navPortraitTheRestSubItemParentInfaqButtonHolder
+    {
+        flex: 0 0 1.5em;
+    }
+
+    #footerLayout
+    {
+        display: none;
+    }
+}
+
+.display-none
+{
+    display: none;
+}
+
+.grecaptcha-badge
+{
+    visibility: hidden;
+}
+
+#layout
+{
+    background-color: #faa;
+}
+
+#headerLayout
+{
+    background-color: #afa;
+}
+
+#flexLayout
+{
+    background-color: #aaf;
+}
+
+#navLandscapeParent
+{
+    background-color: #faf;
+}
+
+#contentLayout
+{
+    background-color: #ffa;
+}
+
+#navPortraitList
+{
+    background-color: #f00;
+}
+
+#footerLayout
+{
+    background-color: #aff;
+}

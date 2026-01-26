@@ -1,0 +1,11 @@
+{{ define "layout-pt" }}
+<div id='flexLayout'>
+	<div id='navLandscapeParent'></div>
+	<div id='contentLayout'>
+		{{ template "content-pt" . }}
+	</div>
+</div>
+<div id='navPortraitParent'>
+	{{ block "navigation-pt" . }}{{ end }}
+</div>
+{{ end }}

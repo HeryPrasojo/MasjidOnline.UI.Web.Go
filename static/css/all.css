@@ -1,0 +1,97 @@
+button,
+html,
+input[type='datetime-local'],
+input[type='email'],
+input[type='file'],
+input[type='password'],
+input[type='text'],
+textarea
+{
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 1em;
+}
+
+code
+{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button,
+input[type='file'],
+input[type='file']::file-selector-button
+{
+    cursor: pointer;
+}
+
+
+.display-none
+{
+    display: none;
+}
+
+
+#pageLoading
+{
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+    text-align: center;
+    background-color: #eee;
+    color: #111;
+}
+
+.loading
+{
+    animation: loading 1s infinite;
+}
+
+@keyframes loading
+{
+    50%
+    {
+        opacity: 0.1;
+    }
+}
+
+
+.anonymous
+{
+    display: none;
+}
+
+.internal
+{
+    display: none;
+}
+
+.internalPermission
+{
+    display: none;
+}
+
+.loggedIn
+{
+    display: none;
+}
+
+.linkStyle
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.spacer-top
+{
+    margin-top: 1em;
+}
+
+.spacer-top-half
+{
+    margin-top: 0.5em;
+}
+
+.textAlign-end
+{
+    text-align: end;
+}

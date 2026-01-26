@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ .Lang }}">
+
+	<head>
+		<title>{{ .Title }}</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/all.css" />
+		<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/layout.css" />
+		{{ block "css" . }}{{ end }}
+		<script>
+			const mo = {
+				backendUriPrefix: '//{{ .Environment.BackendHost }}/',
+				environment: '{{ .Environment.Environment }}',
+				hubUri: '//{{ .Environment.BackendHost }}/hub',
+				recaptchaActionPrefix: '{{ .Environment.Environment }}_',
+				recaptchaSiteKey: '6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R',
+			};
+		</script>
+		<script src='//{{ .Environment.StaticHost }}/js/common.js'></script>
+		<script src='//{{ .Environment.StaticHost }}/js/layout.js'></script>
+		{{ block "js" . }}{{ end }}
+		<script src='//{{ .Environment.StaticHost }}/js/loading.js' async></script>
+	</head>
+
+	<body>
+		<div id='pageLoading' class='loading'>Loading...</div>
+		<div id='layout'>
+			<div id='headerLayout'>
+				<div id='title'>{{ .Title }}</div>
+			</div>
+			{{ if eq .Orientation 0 }}
+			{{ template "layout-ls" . }}
+			{{ else }}
+			{{ template "layout-pt" . }}
+			{{ end }}
+			<div id='footerLayout'>
+				<div id='footerTitle'>MasjidOnline</div>
+			</div>
+		</div>
+	</body>
+
+</html>

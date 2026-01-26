@@ -1,0 +1,8 @@
+{{ define "js" }}
+<script src='//cdn.jsdelivr.net/npm/@microsoft/signalr@9.0.6/dist/browser/signalr.min.js'></script>
+<script src='//{{ .Environment.StaticHost }}/js/storage.js'></script>
+<script src='//{{ .Environment.StaticHost }}/js/fetch.js'></script>
+<script src='//{{ .Environment.StaticHost }}/js/navigation.js' async></script>
+<script src='//{{ .Environment.StaticHost }}/js/hub.js' async></script>
+<script src='//{{ .Environment.StaticHost }}/js/home.js' async></script>
+{{ end }}

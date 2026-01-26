@@ -1,0 +1,11 @@
+{{ define "layout-ls" }}
+<div id='flexLayout'>
+	<div id='navLandscapeParent'>
+		{{ block "navigation-ls" . }}{{ end }}
+	</div>
+	<div id='contentLayout'>
+		{{ template "content-ls" . }}
+	</div>
+</div>
+<div id='navPortraitParent'></div>
+{{ end }}
