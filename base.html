@@ -26,17 +26,17 @@
 	<body>
 		<div id='pageLoading' class='loading'>Loading...</div>
 		<div id='layout'>
-			<div id='headerLayout'>
-				<div id='title'>{{ index .Dict .Title }}</div>
-			</div>
+			<header id='headerLayout'>
+				<div id='title'>{{ index .Dict "MasjidOnline" }}</div>
+			</header>
 			{{ if eq .Orientation 0 }}
 			{{ template "layout-ls" . }}
 			{{ else }}
 			{{ template "layout-pt" . }}
 			{{ end }}
-			<div id='footerLayout'>
-				<div id='footerTitle'>MasjidOnline</div>
-			</div>
+			<footer id='footerLayout'>
+				<div id='footerTitle'>{{ index .Dict "MasjidOnline" }}</div>
+			</footer>
 		</div>
 	</body>
 
