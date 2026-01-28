@@ -88,6 +88,16 @@ var pages = map[string]Page{
 		Data:     PageData{},
 		Template: template.Must(template.ParseFiles("content.html", "page/home-ls.html", "page/home-pt.html")),
 	},
+	"/about": {
+		Data: PageData{
+			Title: "About",
+		},
+		Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/about-js.html", "page/about-ls.html", "page/about-pt.html")...)),
+	},
+	"/about-content": {
+		Data:     PageData{},
+		Template: template.Must(template.ParseFiles("content.html", "page/about-ls.html", "page/about-pt.html")),
+	},
 }
 
 func main() {
