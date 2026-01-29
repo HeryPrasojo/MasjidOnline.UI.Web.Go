@@ -19,7 +19,7 @@ type Environment struct {
 type Orientation int
 
 type Page struct {
-	Data     PageData
+	Title    string
 	Template *template.Template
 }
 
@@ -28,8 +28,8 @@ type PageData struct {
 	Environment *Environment
 	Lang        string
 	Orientation Orientation
-	Title       string
 	User        User
+	Title       string
 }
 
 type User struct {
@@ -74,30 +74,30 @@ var pageWithNavigationFiles = append(
 )
 
 var pages = map[string]Page{
-	"/navigation": {
-		Data:     PageData{},
-		Template: template.Must(template.ParseFiles("navigation.html", "navigation-ls.html", "navigation-pt.html")),
-	},
-	"/": {
-		Data: PageData{
-			Title: "Home",
-		},
-		Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/home-js.html", "page/home-ls.html", "page/home-pt.html")...)),
-	},
-	"/-content": {
-		Data:     PageData{},
-		Template: template.Must(template.ParseFiles("content.html", "page/home-ls.html", "page/home-pt.html")),
-	},
+	// "/navigation": {
+	// 	Template: template.Must(template.New("navigation.html").Funcs(template.FuncMap{"t": func() string { return "inside t" }}).ParseFiles("navigation.html", "navigation-ls.html", "navigation-pt.html")),
+	// },
+	// "/": {
+	// 	Title:    "Home",
+	// 	Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/home-js.html", "page/home-ls.html", "page/home-pt.html")...)),
+	// },
+	// "/-content": {
+	// 	Template: template.Must(template.ParseFiles("content.html", "page/home-ls.html", "page/home-pt.html")),
+	// },
 	"/about": {
-		Data: PageData{
-			Title: "About",
-		},
-		Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/about-js.html", "page/about-ls.html", "page/about-pt.html")...)),
+		Title:    "About",
+		Template: template.Must(template.New("base.html").Funcs(template.FuncMap{"t": t}).ParseFiles(append(pageWithNavigationFiles, "page/about-js.html", "page/about-ls.html", "page/about-pt.html")...)),
 	},
-	"/about-content": {
-		Data:     PageData{},
-		Template: template.Must(template.ParseFiles("content.html", "page/about-ls.html", "page/about-pt.html")),
-	},
+	// "/about-content": {
+	// 	Template: template.Must(template.ParseFiles("content.html", "page/about-ls.html", "page/about-pt.html")),
+	// },
+	// "/infaq": {
+	// 	Title:    "Infaq",
+	// 	Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/infaq/infaq-js.html", "page/infaq/infaq-ls.html", "page/infaq/infaq-pt.html")...)),
+	// },
+	// "/infaq-content": {
+	// 	Template: template.Must(template.ParseFiles("content.html", "page/infaq/infaq-ls.html", "page/infaq/infaq-pt.html")),
+	// },
 }
 
 func main() {
@@ -151,11 +151,6 @@ func init() {
 	}
 
 	languageMatcher = language.NewMatcher(tags)
-
-	for k, v := range pages {
-		v.Data.Environment = &environment
-		pages[k] = v
-	}
 
 	if environment.Environment == "L" {
 		http.HandleFunc("/", f2)
@@ -237,12 +232,18 @@ func f1(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 	}
 
-	page.Data.Dict = dictionary2[locale]
-	page.Data.Lang = langSwaps[locale]
-	page.Data.Orientation = orientation
-	page.Data.User.Type = userType
+	pageData := PageData{
+		Dict:        dictionary2[locale],
+		Environment: &environment,
+		Lang:        langSwaps[locale],
+		Orientation: orientation,
+		User: User{
+			Type: userType,
+		},
+		Title: page.Title,
+	}
 
-	page.Template.Execute(w, page.Data)
+	page.Template.Execute(w, pageData)
 }
 
 func f2(w http.ResponseWriter, r *http.Request) {
@@ -254,4 +255,8 @@ func f2(w http.ResponseWriter, r *http.Request) {
 	default:
 		f1(w, r)
 	}
+}
+
+func t() string {
+	return "inside t 2"
 }
