@@ -49,7 +49,7 @@ const moFetch = {};
 		}
 
 
-		const response = await moFetch.fetch(mo.apiUriPrefix + url, options);
+		const response = await moFetch.fetch(mo.backendUriPrefix + url, options);
 
 		if (response.status != 200)
 		{
@@ -120,6 +120,15 @@ const moFetch = {};
 		return await moFetch.fetchApiJson('user/login', { body });
 	};
 
+	moFetch.fetchRecommendationNote = async () =>
+	{
+		const body = {};
+
+		await addRequestCaptchaToken(body, 'recommendationNote');
+
+		return await moFetch.fetchApiJson('payment/manual/getRecommendationNote', { body });
+	};
+
 	moFetch.fetchRegister = async (body) =>
 	{
 		await addRequestCaptchaToken(body, 'register');
@@ -185,7 +194,7 @@ const moFetch = {};
 
 	async function getSession()
 	{
-		let sessionId = mo.getSession();
+		let sessionId = moStorage.getSession();
 
 		if (!sessionId)
 		{
@@ -203,7 +212,7 @@ const moFetch = {};
 
 			sessionId = json.Data;
 
-			mo.setSession(sessionId);
+			moStorage.setSession(sessionId);
 		}
 
 		return sessionId;

@@ -10,6 +10,17 @@ import (
 	"golang.org/x/text/language"
 )
 
+type Endpoint struct {
+	Title    string
+	Template *template.Template
+}
+
+type EndpointData struct {
+	UseNavigation bool
+	Title         string
+	Files         []string
+}
+
 type Environment struct {
 	BackendHost string
 	Environment string
@@ -18,23 +29,18 @@ type Environment struct {
 
 type Orientation int
 
-type Page struct {
-	Title    string
-	Template *template.Template
+type User struct {
+	Name string
+	Type UserType
 }
 
-type PageData struct {
+type TemplateData struct {
 	Dict        map[string]string
 	Environment *Environment
 	Lang        string
 	Orientation Orientation
-	User        User
+	User        *User
 	Title       string
-}
-
-type User struct {
-	Name string
-	Type UserType
 }
 
 type UserType int
@@ -45,6 +51,8 @@ const (
 )
 
 var dictionary2 []map[string]string
+
+var endpoints = map[string]Endpoint{}
 
 var environment Environment
 
@@ -58,47 +66,6 @@ var langSwaps map[int]string
 var langTags map[language.Tag]string
 
 var languageMatcher language.Matcher
-
-var pageFiles = []string{
-	"base.html",
-	"layout-ls.html",
-	"layout-pt.html",
-	"navigation-ls.html",
-	"navigation-pt.html",
-}
-
-var pageWithNavigationFiles = append(
-	pageFiles,
-	"navigation-ls.html",
-	"navigation-pt.html",
-)
-
-var pages = map[string]Page{
-	// "/navigation": {
-	// 	Template: template.Must(template.New("navigation.html").Funcs(template.FuncMap{"t": func() string { return "inside t" }}).ParseFiles("navigation.html", "navigation-ls.html", "navigation-pt.html")),
-	// },
-	// "/": {
-	// 	Title:    "Home",
-	// 	Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/home-js.html", "page/home-ls.html", "page/home-pt.html")...)),
-	// },
-	// "/-content": {
-	// 	Template: template.Must(template.ParseFiles("content.html", "page/home-ls.html", "page/home-pt.html")),
-	// },
-	"/about": {
-		Title:    "About",
-		Template: template.Must(template.New("base.html").Funcs(template.FuncMap{"t": t}).ParseFiles(append(pageWithNavigationFiles, "page/about-js.html", "page/about-ls.html", "page/about-pt.html")...)),
-	},
-	// "/about-content": {
-	// 	Template: template.Must(template.ParseFiles("content.html", "page/about-ls.html", "page/about-pt.html")),
-	// },
-	// "/infaq": {
-	// 	Title:    "Infaq",
-	// 	Template: template.Must(template.ParseFiles(append(pageWithNavigationFiles, "page/infaq/infaq-js.html", "page/infaq/infaq-ls.html", "page/infaq/infaq-pt.html")...)),
-	// },
-	// "/infaq-content": {
-	// 	Template: template.Must(template.ParseFiles("content.html", "page/infaq/infaq-ls.html", "page/infaq/infaq-pt.html")),
-	// },
-}
 
 func main() {
 
@@ -118,6 +85,8 @@ func init() {
 	default:
 		panic("Unknown environment")
 	}
+
+	buildEndpoints()
 
 	dictionary2 = make([]map[string]string, len(langs))
 	for i := range dictionary2 {
@@ -222,7 +191,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 		userType = UserTypeAnonymous
 	}
 
-	page, ok := pages[r.URL.Path]
+	endpoint, ok := endpoints[r.URL.Path]
 	if !ok {
 
 		if environment.Environment == "L" {
@@ -232,23 +201,23 @@ func f1(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 	}
 
-	pageData := PageData{
+	templateData := TemplateData{
 		Dict:        dictionary2[locale],
 		Environment: &environment,
 		Lang:        langSwaps[locale],
 		Orientation: orientation,
-		User: User{
+		User: &User{
 			Type: userType,
 		},
-		Title: page.Title,
+		Title: endpoint.Title,
 	}
 
-	page.Template.Execute(w, pageData)
+	endpoint.Template.Execute(w, templateData)
 }
 
 func f2(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("---\t", r.URL.Path)
+	fmt.Println("--- ", r.URL.Path)
 
 	switch r.URL.Path {
 	case "/favicon.ico":
@@ -257,6 +226,13 @@ func f2(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func t() string {
-	return "inside t 2"
+func (templateData TemplateData) T(key string) string {
+
+	value, result := templateData.Dict[key]
+
+	if !result {
+		return key
+	}
+
+	return value
 }

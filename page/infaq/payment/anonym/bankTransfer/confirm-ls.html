@@ -1,0 +1,58 @@
+{{ define "content-ls" }}
+<h2>Confirmation</h2>
+<form id='bankTransferForm' class='form'>
+    <div class='field'>
+        <div class='label'>
+            <label id='bankTransferMunfiqNameLabel' for='bankTransferMunfiqNameInput'>Munfiq Name</label>
+        </div>
+        <div id='bankTransferMunfiqNameInputHolder'>
+            <input type='text' id='bankTransferMunfiqNameInput' maxlength='255' required autofocus />
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'>
+            <label id='bankTransferAmountLabel' for='bankTransferAmountInput'>Amount</label>
+        </div>
+        <div id='bankTransferAmountInputHolder'>
+            <input type='number' id='bankTransferAmountInput' min='1' required />
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'>
+            <div>
+                <label id='bankTransferDateTimeLabel' for='bankTransferDateTimeInput'>Transfer local date time</label>
+            </div>
+            <div>as close as possible</div>
+        </div>
+        <div id='bankTransferDateTimeInputHolder'>
+            <input type='datetime-local' id='bankTransferDateTimeInput' required />
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'>
+            <div>
+                <label id='bankTransferNotesLabel' for='bankTransferNotesInput'>Notes</label>
+            </div>
+            <div>e.g. source account</div>
+        </div>
+        <div id='bankTransferNotesInputHolder'>
+            <textarea id='bankTransferNotesInput' maxlength='255'></textarea>
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'>
+            <label id='bankTransferFilesLabel' for='bankTransferFilesInput'>Files</label>
+        </div>
+        <div id='bankTransferFilesInputHolder'>
+            <input id='bankTransferFilesInput' type='file' accept='image/*' multiple />
+        </div>
+    </div>
+    <div class='message spacer-top'>
+        <div id='bankTransferMessage'>&nbsp;</div>
+    </div>
+    <div class='button spacer-top'>
+        <button type='button' id='bankTransferSubmitButton'>Submit</button>
+    </div>
+</form>
+<div class='spacer-top'>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</div>
+{{ end }}

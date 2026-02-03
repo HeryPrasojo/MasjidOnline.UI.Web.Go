@@ -2,7 +2,7 @@
 <html lang="{{ .Lang }}">
 
 	<head>
-		<title>{{ index .Dict .Title }}</title>
+		<title>{{ .T .Title }}</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/all.css" />
@@ -24,10 +24,10 @@
 	</head>
 
 	<body>
-		<div id='pageLoading' class='loading'>Loading...</div>
+		<div id='pageLoading' class='loading'>{{ .T "Loading..." }}</div>
 		<div id='layout'>
 			<header id='headerLayout'>
-				<div id='title'>{{ index .Dict "MasjidOnline" }}</div>
+				<div id='title'>{{ .T "MasjidOnline" }}</div>
 			</header>
 			{{ if eq .Orientation 0 }}
 			{{ template "layout-ls" . }}
@@ -35,9 +35,10 @@
 			{{ template "layout-pt" . }}
 			{{ end }}
 			<footer id='footerLayout'>
-				<div id='footerTitle'>{{ index .Dict "MasjidOnline" }}</div>
+				<div id='footerTitle'>{{ .T "MasjidOnline" }}</div>
 			</footer>
 		</div>
+		<dialog id='moDialog'></dialog>
 	</body>
 
 </html>

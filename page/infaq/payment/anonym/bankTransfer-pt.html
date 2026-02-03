@@ -1,0 +1,13 @@
+{{ define "content-pt" }}
+<h1>{{ .T "Bank Transfer" }}</h1>
+<p>Please transfer your infaq to the following bank account:</p>
+<ul>
+    <li><strong>Bank BCA Syariah</strong></li>
+    <li>Bank Code: <strong>536</strong></li>
+    <li>Account Number: <strong>1234567890</strong></li>
+    <li>Account Name: <strong>MasjidOnline</strong></li>
+    <li>Recommended Notes: <strong class='loading' id='recommendationNote'>{{ .T "Loading..." }}</strong></li>
+</ul>
+<p>Please at least include <code><strong>infaq</strong></code> word in the notes, so that we can easily add it to the infaq list.</p>
+<p>And finally, please confirm your infaq using the confirmation form here: <a href='/infaq/payment/anonym/bankTransfer/confirm'>{{ .T "Confirmation" }}</a></p>
+{{ end }}

@@ -1,0 +1,5 @@
+{{ if eq .Orientation 0 }}
+{{ template "dialog-ls" . }}
+{{ else }}
+{{ template "dialog-pt" . }}
+{{ end }}

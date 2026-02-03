@@ -1,0 +1,19 @@
+{{ define "content-pt" }}
+<h1>Infaq</h1>
+<div id='introduction'>
+    <p>Currently, we support infaq using bank transfer only.</p>
+</div>
+<div id='method'>
+    <h2>Payment Method</h2>
+    <ul id='methodList'>
+        <li>
+            <div>
+                {{ .T "Please follow" }} <a href='/infaq/payment/anonym/bankTransfer'>{{ .T "Bank Transfer Instruction" }}</a>
+            </div>
+            <div>
+                {{ .T "Or" }} <a href='/infaq/payment/anonym/bankTransfer/confirm'>{{ .T "Bank Transfer Confirmation" }}</a> {{ .T "if you have already made the transfer." }}
+            </div>
+        </li>
+    </ul>
+</div>
+{{ end }}
