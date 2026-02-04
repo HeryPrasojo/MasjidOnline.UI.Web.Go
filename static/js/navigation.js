@@ -22,7 +22,7 @@
 	{
 		if (moLayout.isPortrait())
 		{
-			if (!mo.getElementById('navPortraitList'))
+			if (!mo.getElementById('navPortrait'))
 			{
 				const text = await moFetch.fetchText('/navigation');
 
@@ -54,7 +54,7 @@
 		}
 		else
 		{
-			if (!mo.getElementById('navLandscapeList'))
+			if (!mo.getElementById('navLandscape'))
 			{
 				const text = await moFetch.fetchText('/navigation');
 

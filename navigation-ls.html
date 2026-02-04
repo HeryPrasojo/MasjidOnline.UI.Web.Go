@@ -1,45 +1,51 @@
 {{ define "navigation-ls" }}
-<nav id='navLandscape'>
-	<ul id='navLandscapeList'>
-		<li class='navLandscapeItem' id='navHome'>
-			<a href='/'>{{ .T "Home" }}</a>
-		</li>
-		<li class='navLandscapeItem' id='navAbout'>
-			<a href='/about'>{{ .T "About" }}</a>
-		</li>
-		<li class='navLandscapeItem' id='navInfaq'>
-			<div>
-				<a href='/infaq'>Infaq</a>
-			</div>
-			<ul>
-				<li class='navLandscapeSubItem' id='navInfaqList'>
-					<a href='/infaq/list'>List</a>
-				</li>
-				<li class='navLandscapeSubItem' id='navInfaqPay'>
-					<a href='/infaq/payment'>Payment</a>
-				</li>
-			</ul>
-		</li>
-		<li class='navLandscapeItem' id='navInternalUser'>
-			<div>
-				<a href='/user/internal/list'>Internal User</a>
-			</div>
-		</li>
-		{{ if eq .User.Type 1 }}
-		<li class='navLandscapeItem' id='navLandscapeLogin'>
-			<a href='/login'>Login</a>
-		</li>
-		{{ end }}
-		{{ if eq .User.Type 1 }}
-		<li class='navLandscapeItem' id='navLandscapeRegister'>
-			<a href='/user/register'>Signup</a>
-		</li>
-		{{ end }}
-		{{ if ne .User.Type 1 }}
-		<li class='navLandscapeItem linkStyle loggedIn' id='navLandscapeLogout'>
-			<a>Logout</a>
-		</li>
-		{{ end }}
-	</ul>
-</nav>
+<div id='navLandscapeParent'>
+	<nav id='navLandscape'>
+		<ul id='navLandscapeList'>
+			<li class='navLandscapeItem' id='navHome'>
+				<a href='/'>{{ .T "Home" }}</a>
+			</li>
+			<li class='navLandscapeItem' id='navAbout'>
+				<a href='/about'>{{ .T "About" }}</a>
+			</li>
+			<li class='navLandscapeItem' id='navInfaq'>
+				<div>
+					<a href='/infaq'>Infaq</a>
+				</div>
+				<ul>
+					<li class='navLandscapeSubItem' id='navInfaqList'>
+						<a href='/infaq/list'>List</a>
+					</li>
+					<li class='navLandscapeSubItem' id='navInfaqPay'>
+						<a href='/infaq/payment'>Payment</a>
+					</li>
+				</ul>
+			</li>
+			<li class='navLandscapeItem' id='navInternalUser'>
+				<div>
+					<a href='/user/internal/list'>Internal User</a>
+				</div>
+			</li>
+			{{ if eq .User.Type 1 }}
+			<li class='navLandscapeItem' id='navLandscapeLogin'>
+				<a href='/login'>Login</a>
+			</li>
+			{{ end }}
+			{{ if eq .User.Type 1 }}
+			<li class='navLandscapeItem' id='navLandscapeRegister'>
+				<a href='/user/register'>Signup</a>
+			</li>
+			{{ end }}
+			{{ if ne .User.Type 1 }}
+			<li class='navLandscapeItem linkStyle loggedIn' id='navLandscapeLogout'>
+				<a>Logout</a>
+			</li>
+			{{ end }}
+		</ul>
+	</nav>
+</div>
+{{ end }}
+
+{{ define "navigation-ls-pt" }}
+<div id='navPortraitParent'></div>
 {{ end }}

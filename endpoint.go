@@ -8,8 +8,6 @@ func buildEndpoints() {
 		"base.html",
 		"layout-ls.html",
 		"layout-pt.html",
-		"navigation-ls.html",
-		"navigation-pt.html",
 	}
 
 	endpointWithNavigationFiles := append(

@@ -69,6 +69,8 @@ var languageMatcher language.Matcher
 
 func main() {
 
+	fmt.Println("Listening and serving...")
+
 	http.ListenAndServe(":81", nil)
 }
 

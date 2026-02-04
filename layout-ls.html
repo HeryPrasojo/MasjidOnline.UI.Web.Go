@@ -1,11 +1,9 @@
 {{ define "layout-ls" }}
 <div id='flexLayout'>
-	<div id='navLandscapeParent'>
-		{{ block "navigation-ls" . }}{{ end }}
-	</div>
+	{{ block "navigation-ls" . }}{{ end }}
 	<main id='contentLayout'>
 		{{ template "content-ls" . }}
 	</main>
 </div>
-<div id='navPortraitParent'></div>
+{{ block "navigation-ls-pt" . }}{{ end }}
 {{ end }}

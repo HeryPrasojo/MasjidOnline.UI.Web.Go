@@ -186,11 +186,6 @@ body
     }
 }
 
-.display-none
-{
-    display: none;
-}
-
 .grecaptcha-badge
 {
     visibility: hidden;
