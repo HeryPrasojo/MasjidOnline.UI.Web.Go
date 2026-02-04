@@ -1,5 +1,9 @@
 const moLayout = {
-	isPortrait: () => screen.orientation.type.startsWith('portrait'),
+	isPortrait: () =>
+	{
+		const isP = screen.orientation.type.startsWith('portrait');
+		return isP;
+	},
 };
 
 (() =>
@@ -7,7 +11,7 @@ const moLayout = {
 	const cookieOrientation = mo.getCookie('o');
 	if (moLayout.isPortrait() && (cookieOrientation != 1))
 	{
-		document.cookie = "o=1";
+		document.cookie = "o=1; path=/";
 
 		location.reload();
 
@@ -15,7 +19,7 @@ const moLayout = {
 	}
 	else if (!moLayout.isPortrait() && (cookieOrientation != 0))
 	{
-		document.cookie = "o=0";
+		document.cookie = "o=0; path=/";
 
 		location.reload();
 
@@ -36,7 +40,7 @@ const moLayout = {
 		const cookieOrientation = mo.getCookie('o');
 		if (moLayout.isPortrait() && (cookieOrientation != 1))
 		{
-			document.cookie = "o=1";
+			document.cookie = "o=1; path=/";
 
 			const text = await moFetch.fetchText(location.pathname + '-content');
 
@@ -44,7 +48,7 @@ const moLayout = {
 		}
 		else if (!moLayout.isPortrait() && (cookieOrientation != 0))
 		{
-			document.cookie = "o=0";
+			document.cookie = "o=0; path=/";
 
 			const text = await moFetch.fetchText(location.pathname + '-content');
 

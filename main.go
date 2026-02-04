@@ -136,6 +136,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 
 		c := http.Cookie{
 			Name:  "l",
+			Path:  "/",
 			Value: "0",
 			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
 		}
@@ -160,6 +161,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 
 		c := http.Cookie{
 			Name:  "o",
+			Path:  "/",
 			Value: "0",
 			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
 		}
@@ -177,6 +179,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 
 		c := http.Cookie{
 			Name:  "u.t",
+			Path:  "/",
 			Value: "1",
 			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
 		}

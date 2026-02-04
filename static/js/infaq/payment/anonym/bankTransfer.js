@@ -5,7 +5,19 @@
     else
         window.addEventListener('load', onDOMContentLoaded);
 
+    document.addEventListener('moLayoutChanged', onLayoutChanged);
+
     async function onDOMContentLoaded()
+    {
+        await getRecommendationNote();
+    }
+
+    async function onLayoutChanged()
+    {
+        await getRecommendationNote();
+    }
+
+    async function getRecommendationNote()
     {
         var recommendationNote = moStorage.getRecommendationNote();
 
