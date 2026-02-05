@@ -17,10 +17,10 @@
 				recaptchaSiteKey: '6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R',
 			};
 		</script>
-		<script src='//{{ .Environment.StaticHost }}/js/common.js'></script>
-		<script src='//{{ .Environment.StaticHost }}/js/layout.js'></script>
+		<script src='//{{ .Environment.StaticHost }}/js/common.js' defer></script>
+		<script src='//{{ .Environment.StaticHost }}/js/layout.js' defer></script>
 		{{ block "js" . }}{{ end }}
-		<script src='//{{ .Environment.StaticHost }}/js/loading.js' async></script>
+		<script src='//{{ .Environment.StaticHost }}/js/loading.js' defer></script>
 	</head>
 
 	<body>
@@ -38,7 +38,6 @@
 				<div id='footerTitle'>{{ .T "MasjidOnline" }}</div>
 			</footer>
 		</div>
-		<dialog id='moDialog'></dialog>
 	</body>
 
 </html>

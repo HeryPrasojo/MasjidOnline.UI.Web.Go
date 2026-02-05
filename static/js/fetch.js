@@ -187,8 +187,6 @@ const moFetch = {};
 
 	async function getCaptchaToken(action)
 	{
-		if (typeof grecaptcha === 'undefined') throw new Error('Captcha is not ready. Please try again.');
-
 		return await grecaptcha.enterprise.execute(mo.recaptchaSiteKey, { action: action + mo.recaptchaActionAffix });
 	}
 

@@ -26,10 +26,7 @@ const moLayout = {
 		return;
 	}
 
-	if (document.readyState == 'loading')
-		document.addEventListener("DOMContentLoaded", layout);
-	else
-		layout();
+	layout();
 
 	screen.orientation.addEventListener("change", layout);
 

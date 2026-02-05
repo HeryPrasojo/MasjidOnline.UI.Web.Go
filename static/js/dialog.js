@@ -10,7 +10,7 @@ const moDialog =
             {
                 const dialogHtml = await moFetch.fetchText('/dialog');
 
-                document.body.append(dialogHtml);
+                document.body.insertAdjacentHTML('beforeend', dialogHtml);
             }
             catch (e)
             {

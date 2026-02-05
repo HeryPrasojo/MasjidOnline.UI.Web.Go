@@ -1,7 +1,8 @@
 {{ define "js" }}
-<script src="//www.google.com/recaptcha/enterprise.js?render=6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R" async></script>
-<script src='//{{ .Environment.StaticHost }}/js/storage.js'></script>
-<script src='//{{ .Environment.StaticHost }}/js/authorization.js'></script>
-<script src='//{{ .Environment.StaticHost }}/js/fetch.js'></script>
-<script src='//{{ .Environment.StaticHost }}/js/infaq/payment/anonym/bankTransfer/confirm.js' async></script>
+<script src="//www.google.com/recaptcha/enterprise.js?render=6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R" defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/storage.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/authorization.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/fetch.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/dialog.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/infaq/payment/anonym/bankTransfer/confirm.js' defer></script>
 {{ end }}

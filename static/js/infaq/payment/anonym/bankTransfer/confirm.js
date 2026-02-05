@@ -2,17 +2,10 @@
 {
     moAuthorization.authorizeAnonymous();
 
-    grecaptcha.enterprise.ready(() =>
-    {
-        if (document.readyState == 'loading')
-            document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
-        else
-            onDOMContentLoaded();
-    });
+    grecaptcha.enterprise.ready(start);
 
-    async function onDOMContentLoaded()
+    async function start()
     {
-        const bankTransferRecommendationNoteElement = mo.getElementById('bankTransferRecommendationNote');
         const bankTransferFormElement = mo.getElementById('bankTransferForm');
         const bankTransferMunfiqNameElement = mo.getElementById('bankTransferMunfiqNameInput');
         const bankTransferAmountElement = mo.getElementById('bankTransferAmountInput');
@@ -41,8 +34,7 @@
 
             moStorage.setRecommendationNote(recommendationNote);
         }
-        bankTransferRecommendationNoteElement.textContent = 'MO Infaq ' + recommendationNote;
-        bankTransferNotesElement.value = bankTransferRecommendationNoteElement.textContent;
+        bankTransferNotesElement.value = recommendationNote;
 
         const messageColor = bankTransferMessageElement.style.color;
 
@@ -84,7 +76,7 @@
 
                 bankTransferSubmitElement.classList.toggle("loading");
 
-                moDialog.showDialog('Confirmation submitted. Thank you!', () => location.href = '/infaq/list');
+                moDialog.showModal('Confirmation submitted. Thank you!', () => location.href = '/infaq/list');
             }
             catch (err)
             {
@@ -103,4 +95,5 @@
             }
         }
     }
+
 })();

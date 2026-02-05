@@ -36,7 +36,7 @@
 
         recommendationNoteElement.classList.toggle("loading");
 
-        recommendationNoteElement.textContent = 'MO Infaq ' + recommendationNote;
+        recommendationNoteElement.textContent = recommendationNote;
     }
 
 })();
