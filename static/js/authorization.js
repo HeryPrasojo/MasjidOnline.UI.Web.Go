@@ -2,6 +2,6 @@ const moAuthorization =
 {
     authorizeAnonymous: () =>
     {
-        if (mo.getIsLoggedIn()) location.href = '/';
+        if (moStorage.getIsLoggedIn()) location.href = '/';
     },
 };

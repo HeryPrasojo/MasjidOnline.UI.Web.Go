@@ -30,30 +30,23 @@
         bankTransferDateTimeElement.setAttribute("max", nowString);
         bankTransferDateTimeElement.setAttribute("value", nowString);
 
-        var recommendationNote = mo.getRecommendationNote();
+        var recommendationNote = moStorage.getRecommendationNote();
         if (!recommendationNote)
         {
-            const json = await mo.fetchApiJson(
-                'payment/manual/getRecommendationNote',
-                {
-                    body:
-                    {
-                        captchaToken: await grecaptcha.enterprise.execute(mo.recaptchaSiteKey, { action: 'recommendationNotes' + mo.recaptchaActionAffix }),
-                    },
-                });
+            const json = await moFetch.fetchRecommendationNote();
 
-            if (json.ResultCode) return mo.showDialog('Error: ' + json.ResultMessage);
+            if (json.ResultCode) return await moDialog.showModal('Error: ' + json.ResultMessage);
 
             recommendationNote = json.Data;
 
-            mo.setRecommendationNote(recommendationNote);
+            moStorage.setRecommendationNote(recommendationNote);
         }
         bankTransferRecommendationNoteElement.textContent = 'MO Infaq ' + recommendationNote;
         bankTransferNotesElement.value = bankTransferRecommendationNoteElement.textContent;
 
         const messageColor = bankTransferMessageElement.style.color;
 
-        bankTransferFilesElement.addEventListener('change', () => mo.setFileCustomValidity(bankTransferFilesElement, 2, 524288));
+        bankTransferFilesElement.addEventListener('change', () => moForm.setFileCustomValidity(bankTransferFilesElement, 2, 524288));
         bankTransferSubmitElement.addEventListener('click', submitForm);
 
         async function submitForm()
@@ -81,17 +74,17 @@
                 for (const file of bankTransferFilesElement.files)
                     formData.append('files[]', file);
 
-                const json = await mo.fetchAnonymInfaqBankTransfer(formData);
+                const json = await moFetch.fetchAnonymInfaqBankTransfer(formData);
 
                 if (json.ResultCode) return showError(json.ResultMessage);
 
 
-                mo.removeRecommendationNote();
+                moStorage.removeRecommendationNote();
 
 
                 bankTransferSubmitElement.classList.toggle("loading");
 
-                mo.showDialog('Confirmation submitted. Thank you!', () => location.href = '/infaq/list');
+                moDialog.showDialog('Confirmation submitted. Thank you!', () => location.href = '/infaq/list');
             }
             catch (err)
             {

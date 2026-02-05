@@ -1,4 +1,5 @@
-const moDialog = {
+const moDialog =
+{
     showModal: async (innerHtml, onClose) =>
     {
         var dialogElement = mo.getElementById('moDialog');
