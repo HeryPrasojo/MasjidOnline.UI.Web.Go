@@ -15,6 +15,8 @@
         const infaqNextButton = mo.getElementById('infaqNextButton');
         const infaqLastButton = mo.getElementById('infaqLastButton');
 
+        const paymentElement = document.querySelector("#infaqTable .payment");
+
         var currentPage = 1;
         var totalPage = 0;
 
@@ -124,7 +126,9 @@
 
                     const tr = document.createElement('tr');
 
-                    tr.append(idTd, dateTimeTd, munfiqNameTd, paymentTypeTd, amountTd, paymentStatusTd);
+                    tr.append(idTd, dateTimeTd, munfiqNameTd);
+                    if (paymentElement) tr.append(paymentTypeTd);
+                    tr.append(amountTd, paymentStatusTd);
 
                     infaqRowHolder.append(tr);
                 }
