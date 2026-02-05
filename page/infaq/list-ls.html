@@ -1,0 +1,52 @@
+{{ define "content-ls" }}
+<h1>{{ .T .Title }}</h1>
+<div class='tableContainer'>
+    <table id='infaqTable'>
+        <caption>Infaq List</caption>
+        <colgroup>
+            <col class='infaqId' />
+            <col class='date' />
+            <col class='munfiqName' />
+            <col class='payment' />
+            <col class='amount' />
+            <col class='status' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date Time</th>
+                <th>Munfiq Name</th>
+                <th>Payment</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="infaqRowHolder">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Page <span id='infaqPageCurrent'></span> of <span id='infaqPageTotal'></span></td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p id='infaqErrorMessage'></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <form id='formInfaqPage'>
+                        <button type='button' id='infaqFirstButton' disabled>First</button>
+                        <button type='button' id='infaqPrevButton' disabled>Previous</button>
+
+                        <input type='number' id='infaqPageInput' value='1' min='1' required />
+                        <button type='button' id='infaqGoButton'>Go</button>
+
+                        <button type='button' id='infaqNextButton' disabled>Next</button>
+                        <button type='button' id='infaqLastButton' disabled>Last</button>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{{ end }}

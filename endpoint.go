@@ -33,6 +33,11 @@ func buildEndpoints() {
 			UseNavigation: true,
 		},
 
+		"/infaq/list": {
+			Title:         "Infaq List",
+			UseNavigation: true,
+		},
+
 		"/infaq/payment/anonym/bankTransfer": {
 			Title:         "Bank Transfer",
 			UseNavigation: true,

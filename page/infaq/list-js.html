@@ -1,0 +1,9 @@
+{{ define "js" }}
+<script src="//www.google.com/recaptcha/enterprise.js?render=6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R" defer></script>
+<script src='//cdn.jsdelivr.net/npm/@microsoft/signalr@9.0.6/dist/browser/signalr.min.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/storage.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/fetch.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/navigation.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/hub.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/infaq/list.js' defer></script>
+{{ end }}
