@@ -46,6 +46,11 @@ func buildEndpoints() {
 		"/infaq/payment/anonym/bankTransfer/confirm": {
 			Title: "Bank Transfer Confirmation",
 		},
+
+		"/infaq/view": {
+			Title:         "Infaq View",
+			UseNavigation: true,
+		},
 	}
 
 	for path, endpointData := range endpointDatas {

@@ -113,6 +113,11 @@ const moFetch = {};
 		return await moFetch.fetchApiJson('infaq/infaq/getMany', { body });
 	};
 
+	moFetch.fetchInfaqView = async (body) =>
+	{
+		return await moFetch.fetchApiJson('infaq/infaq/getOne', { body });
+	};
+
 	moFetch.fetchLogin = async (body) =>
 	{
 		await addRequestCaptchaToken(body, 'login');

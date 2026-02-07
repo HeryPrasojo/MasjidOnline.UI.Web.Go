@@ -29,26 +29,26 @@
 				navPortraitParent.innerHTML = text;
 
 				addLogoutListener('navPortraitLogout');
+			}
 
-				const navPortraitTheRestButton = mo.getElementById('navPortraitTheRestButton');
-				const navPortraitTheRest = mo.getElementById('navPortraitTheRest');
-				const navPortraitTheRestSubItemParentInfaqButton = mo.getElementById('navPortraitTheRestSubItemParentInfaqButton');
+			const navPortraitTheRestButton = mo.getElementById('navPortraitTheRestButton');
+			const navPortraitTheRest = mo.getElementById('navPortraitTheRest');
+			const navPortraitTheRestSubItemParentInfaqButton = mo.getElementById('navPortraitTheRestSubItemParentInfaqButton');
 
-				navPortraitTheRestButton.addEventListener("click", onClick);
+			navPortraitTheRestButton.addEventListener("click", onClick);
 
-				window.addEventListener('click', onWindowClick);
+			window.addEventListener('click', onWindowClick);
 
-				function onClick()
+			function onClick()
+			{
+				navPortraitTheRest.classList.toggle("display-none");
+			}
+
+			function onWindowClick(event)
+			{
+				if ((event.target != navPortraitTheRestButton) && (event.target != navPortraitTheRestSubItemParentInfaqButton))
 				{
-					navPortraitTheRest.classList.toggle("display-none");
-				}
-
-				function onWindowClick(event)
-				{
-					if ((event.target != navPortraitTheRestButton) && (event.target != navPortraitTheRestSubItemParentInfaqButton))
-					{
-						navPortraitTheRest.classList.add("display-none");
-					}
+					navPortraitTheRest.classList.add("display-none");
 				}
 			}
 		}

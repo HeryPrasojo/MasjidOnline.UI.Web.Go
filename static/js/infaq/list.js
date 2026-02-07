@@ -84,7 +84,7 @@
 
             try
             {
-                var json = await moFetch.fetchInfaqList({
+                const json = await moFetch.fetchInfaqList({
                     Page: pageNumber
                 });
 
