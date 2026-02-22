@@ -1,0 +1,32 @@
+/* TODO portrait */
+
+@media (orientation: landscape)
+{
+    /* .form
+    {
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .form .field
+    {
+        display: flex;
+        gap: 0.5em;
+    }
+
+    .field .label
+    {
+        text-align: end;
+        min-width: 1em;
+    }
+}
+
+label:not(.noContent)::after
+{
+    content: ':';
+}
+
+label.required:not(.noContent)::after
+{
+    content: '* :';
+}

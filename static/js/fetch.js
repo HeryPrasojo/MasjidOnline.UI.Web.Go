@@ -83,7 +83,7 @@ const moFetch = {};
 
 		if (resultCode == 5)
 		{
-			mo.removeSession();
+			moStorage.removeSession();
 
 			options.headers.delete(sessionIdHeaderName);
 

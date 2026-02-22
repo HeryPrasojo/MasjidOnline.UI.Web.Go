@@ -1,0 +1,47 @@
+{{ define "content-ls" }}
+<h1>Password</h1>
+<p>Please verify your email address and set your password.</p>
+<form id='passwordForm' class='form'>
+    <div class='field'>
+        <div class='label'><label class='required' for='emailInput'>Email Address</label></div>
+        <div>
+            <input type='email' id='emailInput' placeholder='Enter address email here' required autofocus />
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'><label class='required' for='passwordInput'>Password</label></div>
+        <div>
+            <div>
+                <input type='password' id='passwordInput' placeholder='Enter new password here' minlength='8' maxlength='64' required autofocus />
+            </div>
+            <ul class='password'>
+                <li>Minimum 8 characters</li>
+                <li>Maximum 64 characters</li>
+                <li>
+                    <div>Must contains:</div>
+                    <ul class='passwordChar'>
+                        <li>Lower case</li>
+                        <li>Upper case</li>
+                        <li>Digit</li>
+                        <li>Symbol</li>
+                    </ul>
+                </li>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'><label class='required' for='password2Input'>Confirm password</label></div>
+        <div>
+            <input type='password' id='password2Input' placeholder='Confirm password here' minlength='8' maxlength='64' required />
+        </div>
+    </div>
+    <div class='message spacer-top'>
+        <div id='messageElement'>&nbsp;</div>
+    </div>
+    <div class='button spacer-top'>
+        <button type='button' id='submitButton'>Set Password</button>
+    </div>
+</form>
+<div class='spacer-top'>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</div>
+{{ end }}

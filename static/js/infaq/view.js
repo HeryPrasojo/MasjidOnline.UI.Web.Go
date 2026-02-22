@@ -3,14 +3,11 @@
     var id;
     var data;
 
-    if (document.readyState == 'loading')
-        document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
-    else
-        onDOMContentLoaded();
+    grecaptcha.enterprise.ready(start);
 
     document.addEventListener("moLayoutChanged", onLayoutChanged);
 
-    async function onDOMContentLoaded()
+    async function start()
     {
         const errorMessageElement = mo.getElementById('errorMessage');
 

@@ -1,6 +1,22 @@
-const moForm =
+const moForm = {};
+
+(() =>
 {
-    setFileCustomValidity: (el, maxLength, maxSize) =>
+    moForm.setCustomValidity = (el, os) =>
+    {
+        var cv = '';
+
+        os.forEach((o, i) => 
+        {
+            if (!o.fn(el.value)) cv = cv ? (cv + '\n- ' + o.m) : ('- ' + o.m);
+        });
+
+        el.setCustomValidity(cv);
+
+        el.reportValidity();
+    };
+
+    moForm.setFileCustomValidity = (el, maxLength, maxSize) =>
     {
         var cv = (el.files.length > maxLength) ? `- Maximum number of files is ${maxLength}` : '';
 
@@ -17,5 +33,6 @@ const moForm =
         el.setCustomValidity(cv);
 
         el.reportValidity();
-    },
-}
+    };
+
+})();

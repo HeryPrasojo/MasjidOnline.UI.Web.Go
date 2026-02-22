@@ -48,8 +48,9 @@ const moHub = {};
 
     connection.on('logout', () =>
     {
-        console.log('logout');
         moStorage.removeIsLoggedIn();
+
+        moCookie.removeUserType();
 
         location.href = '/';
     });

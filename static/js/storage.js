@@ -2,23 +2,10 @@ const moStorage = {};
 
 (() =>
 {
-    const applicationCultureStorageKey = 'applicationCulture';
     const isLoggedInStorageKey = 'isLoggedIn';
     const permissionStorageKey = 'permission'
     const recommendationNoteStorageKey = 'recommendationNote';
     const sessionIdStorageKey = 'sessionId';
-    const userTypeStorageKey = 'userType';
-
-
-    moStorage.getApplicationCulture = () =>
-    {
-        return localStorage.getItem(applicationCultureStorageKey);
-    }
-
-    moStorage.setApplicationCulture = (value) =>
-    {
-        localStorage.setItem(applicationCultureStorageKey, value);
-    }
 
 
     moStorage.removeIsLoggedIn = () =>
@@ -26,8 +13,6 @@ const moStorage = {};
         localStorage.removeItem(isLoggedInStorageKey);
 
         moStorage.removePermission();
-
-        moStorage.removeUserType();
     };
 
     moStorage.getIsLoggedIn = () =>
@@ -96,22 +81,6 @@ const moStorage = {};
     moStorage.setSession = (id) =>
     {
         localStorage.setItem(sessionIdStorageKey, id);
-    }
-
-
-    moStorage.getUserType = () =>
-    {
-        return localStorage.getItem(userTypeStorageKey);
-    }
-
-    moStorage.removeUserType = () =>
-    {
-        localStorage.removeItem(userTypeStorageKey);
-    };
-
-    moStorage.setUserType = (type) =>
-    {
-        localStorage.setItem(userTypeStorageKey, type);
     }
 
 })();

@@ -51,6 +51,10 @@ func buildEndpoints() {
 			Title:         "Infaq View",
 			UseNavigation: true,
 		},
+
+		"/upe": {
+			Title: "User Password",
+		},
 	}
 
 	for path, endpointData := range endpointDatas {
@@ -60,7 +64,7 @@ func buildEndpoints() {
 			file = "/home"
 		}
 
-		files := []string{"page" + file + "-js.html", "page" + file + "-ls.html", "page" + file + "-pt.html"}
+		files := []string{"page" + file + "-head.html", "page" + file + "-ls.html", "page" + file + "-pt.html"}
 
 		var templateFiles []string
 		if endpointData.UseNavigation {

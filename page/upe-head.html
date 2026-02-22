@@ -1,0 +1,12 @@
+{{ define "css" }}
+<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/form.css" />
+<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/user/password-email.css" />
+{{ end }}
+
+{{ define "js" }}
+<script src="//www.google.com/recaptcha/enterprise.js?render=6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R" defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/form.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/storage.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/fetch.js' defer></script>
+<script src='//{{ .Environment.StaticHost }}/js/user/password-email.js' defer></script>
+{{ end }}

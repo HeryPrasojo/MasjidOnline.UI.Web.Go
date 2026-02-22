@@ -2,7 +2,22 @@
 {
     grecaptcha.enterprise.ready(start);
 
+    document.addEventListener("moLayoutChanged", onLayoutChanged);
+
+    var currentPage = 1;
+    var totalPage = 0;
+
     async function start()
+    {
+        displayData();
+    }
+
+    function onLayoutChanged()
+    {
+        displayData();
+    }
+
+    function displayData()
     {
         const infaqRowHolder = mo.getElementById('infaqRowHolder');
         const infaqPageCurrent = mo.getElementById('infaqPageCurrent');
@@ -17,16 +32,14 @@
 
         const paymentElement = document.querySelector("#infaqTable .payment");
 
-        var currentPage = 1;
-        var totalPage = 0;
-
         infaqFirstButton.addEventListener('click', submitFirst);
         infaqPrevButton.addEventListener('click', submitPrev);
         infaqGoButton.addEventListener('click', submitNumber);
         infaqNextButton.addEventListener('click', submitNext);
         infaqLastButton.addEventListener('click', submitLast);
 
-        await submitFirst();
+        submitForm(currentPage);
+
 
         async function submitFirst()
         {
