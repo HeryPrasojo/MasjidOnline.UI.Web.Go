@@ -70,11 +70,6 @@ input[type='file']::file-selector-button
     display: none;
 }
 
-.loggedIn
-{
-    display: none;
-}
-
 .linkStyle
 {
     cursor: pointer;

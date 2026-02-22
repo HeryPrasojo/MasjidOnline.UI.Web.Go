@@ -27,9 +27,9 @@
 				const text = await moFetch.fetchText('/navigation');
 
 				navPortraitParent.innerHTML = text;
-
-				addLogoutListener('navPortraitLogout');
 			}
+
+			addLogoutListener('navPortraitLogout');
 
 			const navPortraitTheRestButton = mo.getElementById('navPortraitTheRestButton');
 			const navPortraitTheRest = mo.getElementById('navPortraitTheRest');
@@ -59,19 +59,22 @@
 				const text = await moFetch.fetchText('/navigation');
 
 				navLandscapeParent.innerHTML = text;
-
-				addLogoutListener('navLandscapeLogout');
 			}
+
+			addLogoutListener('navLandscapeLogout');
 		}
 
 		function addLogoutListener(selector)
 		{
 			const navLogout = mo.getElementById(selector);
 
-			navLogout.addEventListener('click', () =>
+			if (navLogout)
 			{
-				moHub.sendUserLogout();
-			});
+				navLogout.addEventListener('click', () =>
+				{
+					moHub.sendUserLogout();
+				});
+			}
 		}
 	}
 
