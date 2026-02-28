@@ -16,9 +16,10 @@ type Endpoint struct {
 }
 
 type EndpointData struct {
+	Files         []string
+	Path          string
 	UseNavigation bool
 	Title         string
-	Files         []string
 }
 
 type Environment struct {

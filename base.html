@@ -2,12 +2,18 @@
 <html lang="{{ .Lang }}">
 
 	<head>
+
 		<title>{{ .T .Title }}</title>
+
 		<meta charset="UTF-8" />
+
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 		<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/all.css" />
 		<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/layout.css" />
+
 		{{ block "css" . }}{{ end }}
+
 		<script>
 			const mo = {
 				backendUriPrefix: '//{{ .Environment.BackendHost }}/',
@@ -17,11 +23,15 @@
 				recaptchaSiteKey: '6LdSD_oqAAAAAOS497xVyGNjp5AAN-TpvCxk8b5R',
 			};
 		</script>
+
 		<script src='//{{ .Environment.StaticHost }}/js/common.js' defer></script>
 		<script src='//{{ .Environment.StaticHost }}/js/cookie.js' defer></script>
 		<script src='//{{ .Environment.StaticHost }}/js/layout.js' defer></script>
+
 		{{ block "js" . }}{{ end }}
+
 		<script src='//{{ .Environment.StaticHost }}/js/loading.js' defer></script>
+
 	</head>
 
 	<body>

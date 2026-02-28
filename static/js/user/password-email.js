@@ -90,22 +90,20 @@
                     PasswordCode: passwordCode,
                     Password: password,
                     Password2: password2,
-                    LocationLatitude: mo.locationLatitude,
-                    LocationLongitude: mo.locationLongitude,
-                    LocationPrecision: mo.locationPrecision,
-                    LocationAltitude: mo.locationAltitude,
-                    LocationAltitudePrecision: mo.locationAltitudePrecision,
+                    LocationLatitude: moGeoLocation.latitude,
+                    LocationLongitude: moGeoLocation.longitude,
+                    LocationPrecision: moGeoLocation.precision,
+                    LocationAltitude: moGeoLocation.altitude,
+                    LocationAltitudePrecision: moGeoLocation.altitudePrecision,
                     UserAgent: navigator.userAgent,
                 });
 
                 if (json.ResultCode) return showError(json.ResultMessage);
 
 
-                moStorage.setLoggedIn();
-
                 const data = json.Data;
 
-                moStorage.setPermission(data.Permission);
+                moCookie.setPermission(data.Permission);
 
                 moCookie.setUserType(data.UserType);
 

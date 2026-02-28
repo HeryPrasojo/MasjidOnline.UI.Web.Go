@@ -19,6 +19,7 @@ func buildEndpoints() {
 	endpointDatas := map[string]EndpointData{
 
 		"/": {
+			Path:          "/home",
 			Title:         "Home",
 			UseNavigation: true,
 		},
@@ -52,16 +53,25 @@ func buildEndpoints() {
 			UseNavigation: true,
 		},
 
+		"/login": {
+			Path:  "/user/login",
+			Title: "User Login",
+		},
+
 		"/upe": {
+			Path:  "/user/password",
 			Title: "User Password",
 		},
 	}
 
 	for path, endpointData := range endpointDatas {
 
-		file := path
-		if file == "/" {
-			file = "/home"
+		var file string
+
+		if endpointData.Path != "" {
+			file = endpointData.Path
+		} else {
+			file = path
 		}
 
 		files := []string{"page" + file + "-head.html", "page" + file + "-ls.html", "page" + file + "-pt.html"}

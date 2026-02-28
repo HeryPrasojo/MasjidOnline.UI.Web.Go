@@ -2,7 +2,9 @@ const moHub = {};
 
 (() =>
 {
-    if (!moStorage.getIsLoggedIn()) return;
+    const userType = moCookie.getUserType();
+
+    if (!userType || (userType == 1)) return;
 
 
     var lockResolver;
@@ -48,8 +50,6 @@ const moHub = {};
 
     connection.on('logout', () =>
     {
-        moStorage.removeIsLoggedIn();
-
         moCookie.removeUserType();
 
         location.href = '/';

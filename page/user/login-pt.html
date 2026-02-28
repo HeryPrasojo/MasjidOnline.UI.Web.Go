@@ -1,0 +1,28 @@
+{{ define "content-pt" }}
+<h1>Login</h1>
+<form id='loginForm' class='form'>
+    <div class='field'>
+        <div class='label'>
+            <label class='required' for='emailInput'>Email Address</label>
+        </div>
+        <div>
+            <input type='email' id='emailInput' placeholder='Email Address' maxlength='254' required autofocus />
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label'>
+            <label class='required' for='passwordInput'>Password</label>
+        </div>
+        <div>
+            <input type='password' id='passwordInput' placeholder='Password' required />
+        </div>
+    </div>
+    <div class='message spacer-top'>
+        <div id='loginMessage'>&nbsp;</div>
+    </div>
+    <div class='button spacer-top'>
+        <button type='button' id='submitButton'>Login</button>
+    </div>
+</form>
+<div class='spacer-top'>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</div>
+{{ end }}
