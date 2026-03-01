@@ -30,9 +30,14 @@ type Environment struct {
 
 type Orientation int
 
-type User struct {
-	Name string
-	Type UserType
+type Permission struct {
+	AccountancyExpenditureAdd     bool
+	AccountancyExpenditureApprove bool
+	InfaqStatusApprove            bool
+	InfaqStatusRequest            bool
+	UserInternalAdd               bool
+	UserInternalApprove           bool
+	UserInternalPermissionUpdate  bool
 }
 
 type TemplateData struct {
@@ -40,8 +45,14 @@ type TemplateData struct {
 	Environment *Environment
 	Lang        string
 	Orientation Orientation
+	Permission  *Permission
 	User        *User
 	Title       string
+}
+
+type User struct {
+	Name string
+	Type UserType
 }
 
 type UserType int
@@ -125,26 +136,19 @@ func init() {
 	languageMatcher = language.NewMatcher(tags)
 
 	if environment.Environment == "L" {
-		http.HandleFunc("/", f2)
+		http.HandleFunc("/", handleLocalHttp)
 	} else {
-		http.HandleFunc("/", f1)
+		http.HandleFunc("/", handleHttp)
 	}
 }
 
-func f1(w http.ResponseWriter, r *http.Request) {
+func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 	var locale int
 	cookie, _ := r.Cookie("l")
 	if cookie == nil {
 
-		c := http.Cookie{
-			Name:  "l",
-			Path:  "/",
-			Value: "0",
-			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
-		}
-
-		http.SetCookie(w, &c)
+		setCookie(w, "l", "0")
 
 		requestTag, _, _ := language.ParseAcceptLanguage(r.Header.Get("Accept-Language"))
 
@@ -162,35 +166,83 @@ func f1(w http.ResponseWriter, r *http.Request) {
 	cookie, _ = r.Cookie("o")
 	if cookie == nil {
 
-		c := http.Cookie{
-			Name:  "o",
-			Path:  "/",
-			Value: "0",
-			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
-		}
-
-		http.SetCookie(w, &c)
+		setCookie(w, "o", "0")
 
 	} else {
+
 		o, _ := strconv.Atoi(cookie.Value)
+
 		orientation = Orientation(o)
+	}
+
+	var permission Permission
+	cookie, _ = r.Cookie("p.ae.ad")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.AccountancyExpenditureAdd = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ae.ap")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.AccountancyExpenditureApprove = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ii.ap")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.InfaqStatusApprove = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ii.re")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.InfaqStatusRequest = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ui.ad")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.UserInternalAdd = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ui.ap")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.UserInternalApprove = true
+		}
+	}
+	cookie, _ = r.Cookie("p.ui.pu")
+	if cookie != nil {
+
+		o, _ := strconv.Atoi(cookie.Value)
+		if o == 1 {
+			permission.UserInternalPermissionUpdate = true
+		}
 	}
 
 	var userType UserType
 	cookie, _ = r.Cookie("u.t")
 	if cookie == nil {
 
-		c := http.Cookie{
-			Name:  "u.t",
-			Path:  "/",
-			Value: "1",
-			// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
-		}
-
-		http.SetCookie(w, &c)
+		setCookie(w, "u.t", "0")
 
 	} else {
+
 		ut, _ := strconv.Atoi(cookie.Value)
+
 		userType = UserType(ut)
 	}
 	if userType == UserTypeUndefined {
@@ -212,6 +264,7 @@ func f1(w http.ResponseWriter, r *http.Request) {
 		Environment: &environment,
 		Lang:        langSwaps[locale],
 		Orientation: orientation,
+		Permission:  &permission,
 		User: &User{
 			Type: userType,
 		},
@@ -221,14 +274,14 @@ func f1(w http.ResponseWriter, r *http.Request) {
 	endpoint.Template.Execute(w, templateData)
 }
 
-func f2(w http.ResponseWriter, r *http.Request) {
+func handleLocalHttp(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("--- ", r.URL.Path)
 
 	switch r.URL.Path {
 	case "/favicon.ico":
 	default:
-		f1(w, r)
+		handleHttp(w, r)
 	}
 }
 
@@ -241,4 +294,16 @@ func (templateData TemplateData) T(key string) string {
 	}
 
 	return value
+}
+
+func setCookie(w http.ResponseWriter, name string, value string) {
+
+	c := http.Cookie{
+		Name:  name,
+		Path:  "/",
+		Value: value,
+		// SameSite: http.SameSiteLaxMode, // Helps mitigate CSRF attacks
+	}
+
+	http.SetCookie(w, &c)
 }
