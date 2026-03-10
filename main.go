@@ -57,11 +57,6 @@ type User struct {
 
 type UserType int
 
-const (
-	UserTypeUndefined UserType = UserType(0)
-	UserTypeAnonymous UserType = UserType(1)
-)
-
 var dictionary2 []map[string]string
 
 var endpoints = map[string]Endpoint{}
@@ -148,8 +143,6 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 	cookie, _ := r.Cookie("l")
 	if cookie == nil {
 
-		setCookie(w, "l", "0")
-
 		requestTag, _, _ := language.ParseAcceptLanguage(r.Header.Get("Accept-Language"))
 
 		selectedTag, _, _ := languageMatcher.Match(requestTag...)
@@ -164,11 +157,7 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 	var orientation Orientation
 	cookie, _ = r.Cookie("o")
-	if cookie == nil {
-
-		setCookie(w, "o", "0")
-
-	} else {
+	if cookie != nil {
 
 		o, _ := strconv.Atoi(cookie.Value)
 
@@ -235,18 +224,11 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 	var userType UserType
 	cookie, _ = r.Cookie("u.t")
-	if cookie == nil {
-
-		setCookie(w, "u.t", "0")
-
-	} else {
+	if cookie != nil {
 
 		ut, _ := strconv.Atoi(cookie.Value)
 
 		userType = UserType(ut)
-	}
-	if userType == UserTypeUndefined {
-		userType = UserTypeAnonymous
 	}
 
 	endpoint, ok := endpoints[r.URL.Path]
