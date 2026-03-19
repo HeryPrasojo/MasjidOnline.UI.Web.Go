@@ -62,6 +62,10 @@ func buildEndpoints() {
 			Path:  "/user/password",
 			Title: "User Password",
 		},
+
+		"/user/register": {
+			Title: "User Register",
+		},
 	}
 
 	for path, endpointData := range endpointDatas {

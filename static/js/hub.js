@@ -44,8 +44,7 @@ const moHub = {};
 
     connection.onclose(async () =>
     {
-        console.log('closed');
-        if (moStorage.getIsLoggedIn()) startConnection();
+        if (moCookie.getUserType()) startConnection();
     });
 
     connection.on('logout', () =>

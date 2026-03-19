@@ -146,9 +146,9 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		requestTag, _, _ := language.ParseAcceptLanguage(r.Header.Get("Accept-Language"))
 
 		selectedTag, _, _ := languageMatcher.Match(requestTag...)
-		fmt.Println("selectedTag:", selectedTag)
 
 		locale = langs[langTags[selectedTag]]
+		fmt.Println("locale: ", locale)
 
 	} else {
 
@@ -229,6 +229,8 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		ut, _ := strconv.Atoi(cookie.Value)
 
 		userType = UserType(ut)
+	} else {
+		userType = 1
 	}
 
 	endpoint, ok := endpoints[r.URL.Path]
@@ -239,6 +241,8 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		}
 
 		http.NotFound(w, r)
+
+		return
 	}
 
 	templateData := TemplateData{

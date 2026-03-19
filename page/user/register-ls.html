@@ -1,0 +1,22 @@
+{{ define "content-ls" }}
+<h1>Signup</h1>
+<form id='registerForm' class='form'>
+    <div class='field'>
+        <div class='label'>
+            <label class='required' for='emailInput'>Email Address</label>
+        </div>
+        <div>
+            <input type='email' id='emailInput' placeholder='Enter address email here' required autofocus />
+        </div>
+    </div>
+    <div class='message spacer-top'>
+        <div>By signing up, you agree to the <a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class='message spacer-top'>
+        <div id='messageElement'>&nbsp;</div>
+    </div>
+    <div class='button spacer-top'>
+        <button type='button' id='submitButton'>Signup</button>
+    </div>
+</form>
+{{ end }}
