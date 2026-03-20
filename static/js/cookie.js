@@ -13,6 +13,7 @@ const moCookie = {};
     const permissionUserInternalPermissionUpdateKey = 'p.ui.pu';
     const userTypeKey = 'u.t';
 
+    moCookie.getApplicationCulture = () => getCookie(applicationCultureKey);
     moCookie.setApplicationCulture = (c) => setCookie(applicationCultureKey, c);
 
     moCookie.getOrientation = () => getCookie(orientationKey);

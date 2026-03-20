@@ -18,8 +18,9 @@ type Endpoint struct {
 type EndpointData struct {
 	Files         []string
 	Path          string
-	UseNavigation bool
 	Title         string
+	UseNavigation bool
+	UserType      UserType
 }
 
 type Environment struct {
@@ -255,6 +256,16 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 			Type: userType,
 		},
 		Title: endpoint.Title,
+	}
+
+	if templateData.User.Type != 0 {
+
+		if userType != templateData.User.Type {
+
+			http.Redirect(w, r, "/", 302)
+
+			return
+		}
 	}
 
 	endpoint.Template.Execute(w, templateData)

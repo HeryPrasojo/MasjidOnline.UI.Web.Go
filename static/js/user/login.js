@@ -1,7 +1,5 @@
 (async () =>
 {
-    moAuthorization.authorizeAnonymous();
-
     if (document.readyState == 'loading')
         document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
     else

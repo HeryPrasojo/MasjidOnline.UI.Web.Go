@@ -1,7 +1,5 @@
 (async () =>
 {
-    mo.authorizeAnonymous();
-
     if (document.readyState == 'loading')
         document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
     else
@@ -33,14 +31,17 @@
 
             try
             {
-                const json = await mo.fetchRegister({
+                const json = await moFetch.fetchRegister({
                     Contact: email,
                     ContactType: 1,
                 });
 
                 if (json.ResultCode) return showError(json.ResultMessage);
 
-                messageElement.textContent = 'We have sent verification link to the email address. Please follow the link to continue signing up. The link will be expired within 16 minutes.';
+                messageElement.textContent = moLocale.get([
+                    'We have sent verification link to the email address. Please follow the link to continue signing up. The link will be expired within 16 minutes.',
+                    'Kami telah mengirimkan tautan verifikasi ke alamat email. Silakan ikuti tautan tersebut untuk melanjutkan pendaftaran. Tautan akan kedaluwarsa dalam waktu 16 menit.',
+                ]);
 
                 submitElement.classList.toggle("loading");
             }

@@ -54,8 +54,9 @@ func buildEndpoints() {
 		},
 
 		"/login": {
-			Path:  "/user/login",
-			Title: "User Login",
+			Path:     "/user/login",
+			Title:    "User Login",
+			UserType: 1,
 		},
 
 		"/upe": {
@@ -64,7 +65,8 @@ func buildEndpoints() {
 		},
 
 		"/user/register": {
-			Title: "User Register",
+			Title:    "User Register",
+			UserType: 1,
 		},
 	}
 
