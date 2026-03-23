@@ -1,0 +1,25 @@
+@media (orientation: landscape)
+{
+    .field .label
+    {
+        min-width: 10em;
+    }
+
+    .form .button,
+    .form .message
+    {
+        margin-left: 10.5em;
+    }
+}
+
+ul.password
+{
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    padding-inline-start: 1em;
+}
+
+ul.passwordChar
+{
+    padding-inline-start: 1em;
+}

@@ -31,13 +31,16 @@ const moCookie = {};
     }
     moCookie.setPermission = (p) =>
     {
-        if (p.AccountancyExpenditureAdd) setCookie(permissionAccountancyExpenditureAddKey, 1);
-        if (p.AccountancyExpenditureApprove) setCookie(permissionAccountancyExpenditureApproveKey, 1);
-        if (p.InfaqStatusApprove) setCookie(permissionInfaqStatusApproveKey, 1);
-        if (p.InfaqStatusRequest) setCookie(permissionInfaqStatusRequestKey, 1);
-        if (p.UserInternalAdd) setCookie(permissionUserInternalAddKey, 1);
-        if (p.UserInternalApprove) setCookie(permissionUserInternalApproveKey, 1);
-        if (p.UserInternalPermissionUpdate) setCookie(permissionUserInternalPermissionUpdateKey, 1);
+        if (p)
+        {
+            if (p.AccountancyExpenditureAdd) setCookie(permissionAccountancyExpenditureAddKey, 1);
+            if (p.AccountancyExpenditureApprove) setCookie(permissionAccountancyExpenditureApproveKey, 1);
+            if (p.InfaqStatusApprove) setCookie(permissionInfaqStatusApproveKey, 1);
+            if (p.InfaqStatusRequest) setCookie(permissionInfaqStatusRequestKey, 1);
+            if (p.UserInternalAdd) setCookie(permissionUserInternalAddKey, 1);
+            if (p.UserInternalApprove) setCookie(permissionUserInternalApproveKey, 1);
+            if (p.UserInternalPermissionUpdate) setCookie(permissionUserInternalPermissionUpdateKey, 1);
+        }
     }
 
     moCookie.getUserType = () => getCookie(userTypeKey);

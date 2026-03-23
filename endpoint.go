@@ -65,7 +65,13 @@ func buildEndpoints() {
 		},
 
 		"/user/register": {
-			Title:    "User Register",
+			Title:    "User Registration",
+			UserType: 1,
+		},
+
+		"/vre": {
+			Path:     "/user/register/verify",
+			Title:    "Verify Registration Email",
 			UserType: 1,
 		},
 	}
