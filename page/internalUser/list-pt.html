@@ -1,0 +1,53 @@
+{{ define "content-pt" }}
+<h1>Internal User List</h1>
+<div>
+    <button type='button' id='internalUserAddButton'>Add</button>
+</div>
+<div class='tableContainer'>
+    <table id='internalUserTable'>
+        <caption>Internal User List</caption>
+        <colgroup>
+            <col class='internalUserId' />
+            <col class='dateTime' />
+            <col class='name' />
+            <col class='status' />
+            <col class='addName' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date Time</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Add by</th>
+            </tr>
+        </thead>
+        <tbody id="internalUserRowHolder">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Page <span id='internalUserPageCurrent'></span> of <span id='internalUserPageTotal'></span></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div id='internalUserErrorMessage'>&nbsp;</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <form id='formInternalUserPage'>
+                        <button type='button' id='internalUserFirstButton' disabled>First</button>
+                        <button type='button' id='internalUserPrevButton' disabled>Previous</button>
+
+                        <input type='number' id='internalUserPageInput' value='1' min='1' required />
+                        <button type='button' id='internalUserGoButton'>Go</button>
+
+                        <button type='button' id='internalUserNextButton' disabled>Next</button>
+                        <button type='button' id='internalUserLastButton' disabled>Last</button>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{{ end }}

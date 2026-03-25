@@ -1,3 +1,7 @@
+{{ define "css" }}
+<link rel="stylesheet" href="//{{ .Environment.StaticHost }}/css/infaq.css" />
+{{ end }}
+
 {{ define "js" }}
 <script src='//cdn.jsdelivr.net/npm/@microsoft/signalr@9.0.6/dist/browser/signalr.min.js' defer></script>
 <script src='//{{ .Environment.StaticHost }}/js/storage.js' defer></script>

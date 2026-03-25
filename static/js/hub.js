@@ -142,7 +142,7 @@ const moHub = {};
                 moHub.isStarted = true;
 
 
-                const onHubStartedEvent = new Event("hubStarted");
+                const onHubStartedEvent = new Event("hub.started");
 
                 document.dispatchEvent(onHubStartedEvent);
             }

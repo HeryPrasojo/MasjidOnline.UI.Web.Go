@@ -21,11 +21,13 @@
 					</li>
 				</ul>
 			</li>
-			<li class='navLandscapeItem' id='navInternalUser'>
+			{{ if eq .User.Type 5 }}
+			<li class='navLandscapeItem' id='navLandscapeInternalUser'>
 				<div>
-					<a href='/user/internal/list'>Internal User</a>
+					<a href='/internalUser/list'>Internal User</a>
 				</div>
 			</li>
+			{{ end }}
 			{{ if eq .User.Type 1 }}
 			<li class='navLandscapeItem' id='navLandscapeLogin'>
 				<a href='/login'>Login</a>

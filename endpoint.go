@@ -64,6 +64,13 @@ func buildEndpoints() {
 			Title: "User Password",
 		},
 
+		"/internalUser/list": {
+			Path:          "/internalUser/list",
+			Title:         "Internal User",
+			UseNavigation: true,
+			UserType:      5,
+		},
+
 		"/user/register": {
 			Title:    "User Registration",
 			UserType: 1,

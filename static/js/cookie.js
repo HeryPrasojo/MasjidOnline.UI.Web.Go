@@ -47,6 +47,14 @@ const moCookie = {};
     moCookie.removeUserType = () => removeCookie(userTypeKey);
     moCookie.setUserType = (t) => setCookie(userTypeKey, t);
 
+    moCookie.getIsLoggedIn = () =>
+    {
+        const userType = moCookie.getUserType();
+
+        return (userType == 3) || (userType == 5);
+    }
+
+
     function getCookie(key)
     {
         return document.cookie

@@ -280,6 +280,8 @@ func handleLocalHttp(w http.ResponseWriter, r *http.Request) {
 	default:
 		handleHttp(w, r)
 	}
+
+	fmt.Println()
 }
 
 func (templateData TemplateData) T(key string) string {

@@ -1,0 +1,29 @@
+#internalUserTable .internalUserId
+{
+    min-width: 6em;
+}
+
+#internalUserTable .dateTime
+{
+    min-width: 10em;
+}
+
+#internalUserTable .name
+{
+    min-width: 11em;
+}
+
+#internalUserTable .status
+{
+    min-width: 5em;
+}
+
+#internalUserTable .addName
+{
+    min-width: 11em;
+}
+
+#internalUserTable th
+{
+    text-align: start;
+}

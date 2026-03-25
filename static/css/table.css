@@ -1,0 +1,19 @@
+table
+{
+    border-spacing: 0;
+}
+
+th
+{
+    padding: 0.4em;
+}
+
+td
+{
+    padding: 0.2em;
+}
+
+.tableContainer
+{
+    overflow-x: auto;
+}

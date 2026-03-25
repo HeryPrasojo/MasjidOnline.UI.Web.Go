@@ -38,9 +38,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class='navPortraitTheRestItem'>
-                        <a href='/g'>gg</a>
+                    {{ if eq .User.Type 5 }}
+                    <li class='navPortraitTheRestItem' id='navPortraitInternalUser'>
+                        <div>
+                            <a href='/internalUser/list'>Internal User</a>
+                        </div>
                     </li>
+                    {{ end }}
                     {{ if eq .User.Type 1 }}
                     <li class='navPortraitTheRestItem' id='navPortraitLogin'>
                         <a href='/login'>Login</a>

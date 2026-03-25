@@ -55,21 +55,6 @@ input[type='file']::file-selector-button
 }
 
 
-.anonymous
-{
-    display: none;
-}
-
-.internal
-{
-    display: none;
-}
-
-.internalPermission
-{
-    display: none;
-}
-
 .linkStyle
 {
     cursor: pointer;
