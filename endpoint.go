@@ -1,6 +1,9 @@
 package main
 
-import "html/template"
+import (
+	"html/template"
+	"maps"
+)
 
 func buildEndpoints() {
 
@@ -16,7 +19,7 @@ func buildEndpoints() {
 		"navigation-pt.html",
 	)
 
-	endpointDatas := map[string]EndpointData{
+	endpoints = map[string]Endpoint{
 
 		"/": {
 			Path:          "/home",
@@ -54,9 +57,11 @@ func buildEndpoints() {
 		},
 
 		"/login": {
-			Path:     "/user/login",
-			Title:    "User Login",
-			UserType: 1,
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return userType == 1
+			},
+			Path:  "/user/login",
+			Title: "User Login",
 		},
 
 		"/upe": {
@@ -64,53 +69,72 @@ func buildEndpoints() {
 			Title: "User Password",
 		},
 
-		"/internalUser/list": {
-			Path:          "/internalUser/list",
+		"/user/internal/list": {
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return (userType == 5) && (permission.UserInternalAdd || permission.UserInternalApprove)
+			},
 			Title:         "Internal User",
 			UseNavigation: true,
-			UserType:      5,
+		},
+
+		"/user/internal/view": {
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return (userType == 5) && (permission.UserInternalAdd || permission.UserInternalApprove)
+			},
+			Title:         "Internal User",
+			UseNavigation: true,
 		},
 
 		"/user/register": {
-			Title:    "User Registration",
-			UserType: 1,
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return userType == 1
+			},
+			Title: "User Registration",
 		},
 
 		"/vre": {
-			Path:     "/user/register/verify",
-			Title:    "Verify Registration Email",
-			UserType: 1,
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return userType == 1
+			},
+			Path:  "/user/register/verify",
+			Title: "Verify Registration Email",
 		},
 	}
 
-	for path, endpointData := range endpointDatas {
+	var contentEndpoints map[string]Endpoint = make(map[string]Endpoint)
 
-		var file string
+	for path, endpoint := range endpoints {
 
-		if endpointData.Path != "" {
-			file = endpointData.Path
-		} else {
-			file = path
+		if endpoint.Path == "" {
+			endpoint.Path = path
 		}
 
-		files := []string{"page" + file + "-head.html", "page" + file + "-ls.html", "page" + file + "-pt.html"}
+		files := []string{"page" + endpoint.Path + "-head.html", "page" + endpoint.Path + "-ls.html", "page" + endpoint.Path + "-pt.html"}
 
 		var templateFiles []string
-		if endpointData.UseNavigation {
+		if endpoint.UseNavigation {
 			templateFiles = append(endpointWithNavigationFiles, files...)
 		} else {
 			templateFiles = append(endpointFiles, files...)
 		}
 
 		endpoints[path] = Endpoint{
-			Title:    endpointData.Title,
+			AuthorizeFunction: endpoint.AuthorizeFunction,
+			// Path:          endpoint.Path,
+			Title:    endpoint.Title,
 			Template: template.Must(template.ParseFiles(templateFiles...)),
+			// UseNavigation: endpoint.UseNavigation,
 		}
 
-		endpoints[path+"-content"] = Endpoint{
-			Template: template.Must(template.ParseFiles([]string{"content.html", "page" + file + "-ls.html", "page" + file + "-pt.html"}...)),
+		files = []string{"content.html", "page" + endpoint.Path + "-ls.html", "page" + endpoint.Path + "-pt.html"}
+
+		contentEndpoints[path+"-content"] = Endpoint{
+			AuthorizeFunction: endpoint.AuthorizeFunction,
+			Template:          template.Must(template.ParseFiles(files...)),
 		}
 	}
+
+	maps.Copy(endpoints, contentEndpoints)
 
 	endpoints["/dialog"] = Endpoint{
 		Template: template.Must(template.ParseFiles("dialog.html", "dialog-ls.html", "dialog-pt.html")),

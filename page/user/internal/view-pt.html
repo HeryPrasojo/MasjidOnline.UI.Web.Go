@@ -1,0 +1,85 @@
+{{ define "content-pt" }}
+<h1>Internal User View</h1>
+<div id='internalUserMessage' class='loading'>Loading ...</div>
+<div class='view spacer-top' id='internalUserViewForm'>
+    <div class='field'>
+        <div class='label'>Id</div>
+        <div id='internalUserIdField'><span class='loading'>Loading...</span>
+        </div>
+    </div>
+    <div class='field'>
+        <div class='label'>Name</div>
+        <div>
+            <span id='nameField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field'>
+        <div class='label'>Contact</div>
+        <div>
+            <span id='contactField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field'>
+        <div class='label'>Request date time</div>
+        <div>
+            <span id='dateTimeField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field'>
+        <div class='label'>Request by</div>
+        <div>
+            <span id='addNameField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field'>
+        <div class='label'>Status</div>
+        <div>
+            <span id='statusField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='spacer-top'></div>
+    <div class='field nonNew' id='editNameRow'>
+        <div class='label'>Update by</div>
+        <div>
+            <span id='editNameField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field nonNew' id='editDateTimeRow'>
+        <div class='label'>Update date time</div>
+        <div>
+            <span id='editDateTimeField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    <div class='field display-none' id='descriptionRow'>
+        <div class='label'>Description</div>
+        <div>
+            <span id='descriptionField'><span class='loading'>Loading...</span></span>
+        </div>
+    </div>
+    {{ if or .Permission.UserInternalAdd .Permission.UserInternalApprove }}
+    <div class='message spacer-top display-none' id='messageRow'>
+        <div id='viewMessage'>&nbsp;</div>
+    </div>
+    <div class='button spacer-top display-none' id='buttonRow'>
+        {{ if .Permission.UserInternalAdd }}
+        <button type='button' id='cancelButton'>Cancel</button>
+        {{ end }}
+        {{ if .Permission.UserInternalApprove }}
+        <button type='button' id='approveButton'>Approve</button>
+        <button type='button' id='rejectButton'>Reject</button>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+<dialog id='moCancelRejectDialog'>
+    <form>
+        <div class='label'>Description</div>
+        <div id='descriptionInputParent' class='internalPermission'>
+            <div>required for cancel and reject</div>
+            <div class='spacer-top-half'>
+                <textarea id='descriptionInput' maxlength='255'></textarea>
+            </div>
+        </div>
+    </form>
+</dialog>
+{{ end }}

@@ -10,17 +10,14 @@ import (
 	"golang.org/x/text/language"
 )
 
-type Endpoint struct {
-	Title    string
-	Template *template.Template
-}
+type AuthorizeFunction func(userType UserType, permission *Permission) bool
 
-type EndpointData struct {
-	Files         []string
-	Path          string
-	Title         string
-	UseNavigation bool
-	UserType      UserType
+type Endpoint struct {
+	AuthorizeFunction AuthorizeFunction
+	Path              string
+	Title             string
+	Template          *template.Template
+	UseNavigation     bool
 }
 
 type Environment struct {
@@ -246,6 +243,16 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if endpoint.AuthorizeFunction != nil {
+
+		if !endpoint.AuthorizeFunction(userType, &permission) {
+
+			http.Redirect(w, r, "/", 302)
+
+			return
+		}
+	}
+
 	templateData := TemplateData{
 		Dict:        dictionary2[locale],
 		Environment: &environment,
@@ -256,16 +263,6 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 			Type: userType,
 		},
 		Title: endpoint.Title,
-	}
-
-	if templateData.User.Type != 0 {
-
-		if userType != templateData.User.Type {
-
-			http.Redirect(w, r, "/", 302)
-
-			return
-		}
 	}
 
 	endpoint.Template.Execute(w, templateData)

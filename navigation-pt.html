@@ -38,10 +38,10 @@
                             </li>
                         </ul>
                     </li>
-                    {{ if eq .User.Type 5 }}
+                    {{ if or .Permission.UserInternalAdd .Permission.UserInternalApprove }}
                     <li class='navPortraitTheRestItem' id='navPortraitInternalUser'>
                         <div>
-                            <a href='/internalUser/list'>Internal User</a>
+                            <a href='/user/internal/list'>Internal User</a>
                         </div>
                     </li>
                     {{ end }}
