@@ -5,6 +5,8 @@
     else
         onDOMContentLoaded();
 
+    document.addEventListener("moLayoutChanged", onDOMContentLoaded);
+
     function onDOMContentLoaded()
     {
         const internalUserAddButton = mo.getElementById('internalUserAddButton');
