@@ -1,0 +1,13 @@
+@media (orientation: landscape)
+{
+    .field .label
+    {
+        min-width: 10em;
+    }
+
+    .form .button,
+    .form .message
+    {
+        margin-left: 10.5em;
+    }
+}

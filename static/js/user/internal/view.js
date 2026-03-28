@@ -19,7 +19,6 @@
     async function layout()
     {
         const internalUserMessage = mo.getElementById('internalUserMessage');
-        const viewForm = mo.getElementById('internalUserViewForm');
         const internalUserIdElement = mo.getElementById('internalUserIdField');
         const dateTimeElement = mo.getElementById('dateTimeField');
         const contactElement = mo.getElementById('contactField');
@@ -30,11 +29,18 @@
         const editDateTimeElement = mo.getElementById('editDateTimeField');
         const descriptionRowElement = mo.getElementById('descriptionRow');
         const descriptionElement = mo.getElementById('descriptionField');
-        const descriptionInputElement = mo.getElementById('descriptionInput');
         const buttonRowElement = mo.getElementById('buttonRow');
+        const approveMessageElement = mo.getElementById('approveMessage');
         const cancelButton = mo.getElementById('cancelButton');
         const approveButton = mo.getElementById('approveButton');
         const rejectButton = mo.getElementById('rejectButton');
+        const cancelRejectDialog = mo.getElementById('cancelRejectDialog');
+        const cancelRejectForm = mo.getElementById('cancelRejectForm');
+        const descriptionInputElement = mo.getElementById('descriptionInput');
+        const cancelRejectMessageElement = mo.getElementById('cancelRejectMessage');
+        const cancel2Button = mo.getElementById('cancel2Button');
+        const reject2Button = mo.getElementById('reject2Button');
+        const cancelRejectCloseButton = mo.getElementById('cancelRejectCloseButton');
 
         const messageColor = internalUserMessage.style.color;
 
@@ -44,6 +50,12 @@
         cancelButton.addEventListener('click', cancel);
         approveButton.addEventListener('click', approve);
         rejectButton.addEventListener('click', reject);
+        cancel2Button.addEventListener('click', cancel2);
+        reject2Button.addEventListener('click', reject2);
+        cancelRejectCloseButton.addEventListener('click', () =>
+        {
+            cancelRejectDialog.close();
+        });
 
 
         if (moHub.isStarted) receiveUserInternalView();
@@ -69,27 +81,25 @@
 
             const data = json.Data;
 
+            // new
             if (data.Status == 1)
             {
-                moAuthorization.showInternalPermission({
-                    UserInternalAdd: ['#descriptionRow', '#descriptionInputParent', '#cancelButton'],
-                    UserInternalApprove: ['#descriptionRow', '#descriptionInputParent', '#approveButton', '#rejectButton'],
-                });
+                // if (permission && (permission.UserInternalAdd || permission.UserInternalApprove))
+                // {
+                //     buttonRowElement.classList.remove('display-none');
+                // }
 
-
-                if (permission && (permission.UserInternalAdd || permission.UserInternalApprove))
-                {
-                    buttonRowElement.classList.remove('internalPermission');
-                }
+                buttonRowElement.classList.remove('display-none');
             }
             else
             {
-                if (data.Status != 4) descriptionRowElement.classList.remove('internalPermission');
-
                 document.querySelectorAll('.nonNew').forEach((element) =>
                 {
                     element.classList.remove('nonNew');
                 });
+
+                // not approve
+                if (data.Status != 4) descriptionRowElement.classList.remove('display-none');
             }
 
 
@@ -112,15 +122,13 @@
 
         async function approve()
         {
-            descriptionInputElement.required = false;
-
-            if (!viewForm.reportValidity()) return;
+            if (!cancelRejectForm.reportValidity()) return;
 
             cancelButton.disabled = true;
             approveButton.disabled = true;
             rejectButton.disabled = true;
 
-            internalUserMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+            approveMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
 
             approveButton.classList.toggle("loading");
 
@@ -133,9 +141,9 @@
 
                 if (json.ResultCode) return showError(json.ResultMessage);
 
-                internalUserMessage.style.color = messageColor;
-                internalUserMessage.textContent = 'Success. Reloading ...';
-                internalUserMessage.classList.toggle("loading");
+                approveMessageElement.style.color = messageColor;
+                approveMessageElement.textContent = 'Success. Reloading ...';
+                approveMessageElement.classList.toggle("loading");
 
                 location.reload();
             }
@@ -145,19 +153,24 @@
             }
         }
 
-        async function cancel()
+        function cancel()
         {
-            descriptionInputElement.required = true;
+            cancel2Button.classList.remove('display-none');
 
-            if (!viewForm.reportValidity()) return;
+            reject2Button.classList.add('display-none');
 
-            cancelButton.disabled = true;
-            approveButton.disabled = true;
-            rejectButton.disabled = true;
+            cancelRejectDialog.showModal();
+        }
 
-            internalUserMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+        async function cancel2()
+        {
+            if (!cancelRejectForm.reportValidity()) return;
 
-            cancelButton.classList.toggle("loading");
+            cancel2Button.disabled = true;
+
+            cancelRejectMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
+
+            cancel2Button.classList.toggle("loading");
 
             try
             {
@@ -166,31 +179,38 @@
                     Id: internalUserId,
                 });
 
-                if (json.ResultCode) return showError(json.ResultMessage);
+                if (json.ResultCode) return showCancelRejectError(json.ResultMessage);
 
-                internalUserMessage.style.color = messageColor;
-                internalUserMessage.textContent = 'Success. Reloading ...';
-                internalUserMessage.classList.toggle("loading");
+                cancelRejectMessageElement.style.color = messageColor;
+                cancelRejectMessageElement.textContent = 'Success. Reloading ...';
+                cancelRejectMessageElement.classList.toggle("loading");
 
                 location.reload();
             }
             catch (e)
             {
-                showError(e.message);
+                showCancelRejectError(e.message);
             }
         }
 
-        async function reject()
+        function reject()
         {
-            descriptionInputElement.required = true;
+            cancel2Button.classList.add('display-none');
 
-            if (!viewForm.reportValidity()) return;
+            reject2Button.classList.remove('display-none');
+
+            cancelRejectDialog.showModal();
+        }
+
+        async function reject2()
+        {
+            if (!cancelRejectForm.reportValidity()) return;
 
             cancelButton.disabled = true;
             approveButton.disabled = true;
             rejectButton.disabled = true;
 
-            internalUserMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+            cancelRejectMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
 
             rejectButton.classList.toggle("loading");
 
@@ -201,17 +221,17 @@
                     Id: internalUserId,
                 });
 
-                if (json.ResultCode) return showError(json.ResultMessage);
+                if (json.ResultCode) return showCancelRejectError(json.ResultMessage);
 
-                internalUserMessage.style.color = messageColor;
-                internalUserMessage.textContent = 'Success. Reloading ...';
-                internalUserMessage.classList.toggle("loading");
+                cancelRejectMessageElement.style.color = messageColor;
+                cancelRejectMessageElement.textContent = 'Success. Reloading ...';
+                cancelRejectMessageElement.classList.toggle("loading");
 
                 location.reload();
             }
             catch (e)
             {
-                showError(e.message);
+                showCancelRejectError(e.message);
             }
         }
 
@@ -219,6 +239,12 @@
         {
             internalUserMessage.textContent = e;
             internalUserMessage.style.color = 'red';
+        }
+
+        function showCancelRejectError(e)
+        {
+            cancelRejectMessageElement.textContent = e;
+            cancelRejectMessageElement.style.color = 'red';
         }
     }
 })();

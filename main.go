@@ -74,7 +74,10 @@ var languageMatcher language.Matcher
 
 func main() {
 
+	fmt.Println()
+	fmt.Println("--------------------------------------------------------------------------------")
 	fmt.Println("Listening and serving...")
+	fmt.Println()
 
 	http.ListenAndServe(":81", nil)
 }
@@ -146,7 +149,6 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		selectedTag, _, _ := languageMatcher.Match(requestTag...)
 
 		locale = langs[langTags[selectedTag]]
-		fmt.Println("locale: ", locale)
 
 	} else {
 
@@ -270,7 +272,8 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 func handleLocalHttp(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println("--- ", r.URL.Path)
+	fmt.Println("----------------------------------------")
+	fmt.Println(r.URL.Path)
 
 	switch r.URL.Path {
 	case "/favicon.ico":

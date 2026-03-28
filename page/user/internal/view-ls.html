@@ -1,7 +1,7 @@
 {{ define "content-ls" }}
 <h1>Internal User View</h1>
 <div id='internalUserMessage' class='loading'>Loading ...</div>
-<div class='view spacer-top' id='internalUserViewForm'>
+<div class='view spacer-top'>
     <div class='field'>
         <div class='label'>Id</div>
         <div id='internalUserIdField'><span class='loading'>Loading...</span>
@@ -57,9 +57,11 @@
         </div>
     </div>
     {{ if or .Permission.UserInternalAdd .Permission.UserInternalApprove }}
-    <div class='message spacer-top display-none' id='messageRow'>
-        <div id='viewMessage'>&nbsp;</div>
+    {{ if .Permission.UserInternalApprove }}
+    <div class='message spacer-top'>
+        <div id='approveMessage'>&nbsp;</div>
     </div>
+    {{ end }}
     <div class='button spacer-top display-none' id='buttonRow'>
         {{ if .Permission.UserInternalAdd }}
         <button type='button' id='cancelButton'>Cancel</button>
@@ -71,15 +73,28 @@
     </div>
     {{ end }}
 </div>
-<dialog id='moCancelRejectDialog'>
-    <form>
-        <div class='label'>Description</div>
-        <div id='descriptionInputParent' class='internalPermission'>
-            <div>required for cancel and reject</div>
-            <div class='spacer-top-half'>
-                <textarea id='descriptionInput' maxlength='255'></textarea>
+{{ if or .Permission.UserInternalAdd .Permission.UserInternalApprove }}
+<dialog id='cancelRejectDialog'>
+    <form id='cancelRejectForm'>
+        <div class='field'>
+            <div class='label'>Description</div>
+            <div>
+                <textarea id='descriptionInput' maxlength='255' required></textarea>
             </div>
+        </div>
+        <div class='message spacer-top'>
+            <div id='cancelRejectMessage'>&nbsp;</div>
+        </div>
+        <div class='button spacer-top' id='buttonRow'>
+            {{ if .Permission.UserInternalAdd }}
+            <button type='button' id='cancel2Button' class='display-none'>Cancel</button>
+            {{ end }}
+            {{ if .Permission.UserInternalApprove }}
+            <button type='button' id='reject2Button' class='display-none'>Reject</button>
+            {{ end }}
+            <button type='button' id='cancelRejectCloseButton'>{{ .T "Close" }}</button>
         </div>
     </form>
 </dialog>
+{{ end }}
 {{ end }}

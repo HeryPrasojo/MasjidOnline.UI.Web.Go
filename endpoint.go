@@ -69,11 +69,19 @@ func buildEndpoints() {
 			Title: "User Password",
 		},
 
+		"/user/internal/add": {
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return (userType == 5) && permission.UserInternalAdd
+			},
+			Title:         "Internal User Add",
+			UseNavigation: true,
+		},
+
 		"/user/internal/list": {
 			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
 				return (userType == 5) && (permission.UserInternalAdd || permission.UserInternalApprove)
 			},
-			Title:         "Internal User",
+			Title:         "Internal User List",
 			UseNavigation: true,
 		},
 
