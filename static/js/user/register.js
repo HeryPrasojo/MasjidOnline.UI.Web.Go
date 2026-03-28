@@ -1,4 +1,4 @@
-(async () =>
+(() =>
 {
     if (document.readyState == 'loading')
         document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
