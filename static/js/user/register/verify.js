@@ -12,6 +12,8 @@
     else
         onDOMContentLoaded();
 
+    document.addEventListener("moLayoutChanged", onDOMContentLoaded);
+
     function onDOMContentLoaded()
     {
         const formElement = mo.getElementById('registerForm');
