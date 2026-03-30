@@ -2,6 +2,7 @@
 {
     var id;
     var data;
+    var errorMessageElement;
 
     grecaptcha.enterprise.ready(start);
 
@@ -9,7 +10,7 @@
 
     async function start()
     {
-        const errorMessageElement = mo.getElementById('errorMessage');
+        errorMessageElement = mo.getElementById('viewMessage');
 
         const urlSearchParams = new URLSearchParams(window.location.search);
         const idString = urlSearchParams.get('i');
@@ -21,7 +22,12 @@
                 Id: id,
             });
 
-            if (json.ResultCode) return showError(json.ResultMessage);
+            if (json.ResultCode)
+            {
+                errorMessageElement.classList.toggle("loading");
+
+                return showError(json.ResultMessage);
+            }
 
 
             data = json.Data;
@@ -61,6 +67,9 @@
         paymentElement.innerHTML = data.PaymentType;
         amountElement.innerHTML = data.Amount;
         statusElement.innerHTML = data.Status;
+
+        errorMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
+        errorMessageElement.classList.toggle("loading");
     }
 
 })();

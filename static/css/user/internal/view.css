@@ -1,36 +1,13 @@
- .field
+ @media (orientation: landscape)
  {
-     gap: 0.5em;
- }
+     .field .label
+     {
+         min-width: 10em;
+     }
 
- .field:not(.nonNew, .display-none)
- {
-     display: flex;
- }
-
- .field:not(.spacer-top)
- {
-     margin-top: 0.5em;
- }
-
- .field .label
- {
-     text-align: end;
-     min-width: 10em;
- }
-
- .label::after
- {
-     content: ':';
- }
-
- .button,
- .message
- {
-     margin-left: 10.5em;
- }
-
- .nonNew
- {
-     display: none;
+     .button,
+     .message
+     {
+         margin-left: 10.5em;
+     }
  }

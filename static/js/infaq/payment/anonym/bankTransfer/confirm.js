@@ -1,8 +1,8 @@
 (() =>
 {
-    moAuthorization.authorizeAnonymous();
-
     grecaptcha.enterprise.ready(start);
+
+    document.addEventListener('moLayoutChanged', start);
 
     async function start()
     {
@@ -61,7 +61,7 @@
                 formData.append('amount', bankTransferAmountElement.value);
                 formData.append('manualDateTime', date.toISOString());
                 formData.append('manualNotes', bankTransferNotesElement.value.trim());
-                formData.append('paymentType', 22);
+                formData.append('paymentType', 11);
 
                 for (const file of bankTransferFilesElement.files)
                     formData.append('files[]', file);

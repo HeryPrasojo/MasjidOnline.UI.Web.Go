@@ -2,7 +2,7 @@ const moDialog =
 {
     showModal: async (innerHtml, onClose) =>
     {
-        const dialogElement = mo.getElementById('moDialog');
+        var dialogElement = mo.getElementById('moDialog');
 
         if (!dialogElement)
         {

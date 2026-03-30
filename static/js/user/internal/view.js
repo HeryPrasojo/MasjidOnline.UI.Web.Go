@@ -84,11 +84,6 @@
             // new
             if (data.Status == 1)
             {
-                // if (permission && (permission.UserInternalAdd || permission.UserInternalApprove))
-                // {
-                //     buttonRowElement.classList.remove('display-none');
-                // }
-
                 buttonRowElement.classList.remove('display-none');
             }
             else
@@ -122,8 +117,6 @@
 
         async function approve()
         {
-            if (!cancelRejectForm.reportValidity()) return;
-
             cancelButton.disabled = true;
             approveButton.disabled = true;
             rejectButton.disabled = true;
@@ -239,6 +232,12 @@
         {
             internalUserMessage.textContent = e;
             internalUserMessage.style.color = 'red';
+        }
+
+        function showApproveError(e)
+        {
+            approveMessageElement.textContent = e;
+            approveMessageElement.style.color = 'red';
         }
 
         function showCancelRejectError(e)

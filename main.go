@@ -74,7 +74,6 @@ var languageMatcher language.Matcher
 
 func main() {
 
-	fmt.Println()
 	fmt.Println("--------------------------------------------------------------------------------")
 	fmt.Println("Listening and serving...")
 	fmt.Println()

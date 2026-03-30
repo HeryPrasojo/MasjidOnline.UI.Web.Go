@@ -1,0 +1,40 @@
+ .field
+ {
+     gap: 0.5em;
+ }
+
+ .field:not(.spacer-top)
+ {
+     margin-top: 0.5em;
+ }
+
+ .label::after
+ {
+     content: ':';
+ }
+
+ .nonNew
+ {
+     display: none;
+ }
+
+ @media (orientation: landscape)
+ {
+     .field:not(.nonNew, .display-none)
+     {
+         display: flex;
+     }
+
+     .field .label
+     {
+         text-align: end;
+     }
+ }
+
+ @media (orientation: portrait)
+ {
+     .field .value
+     {
+         margin-left: 0.5em;
+     }
+ }

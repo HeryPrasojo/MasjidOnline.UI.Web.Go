@@ -105,7 +105,7 @@ const moFetch = {};
 	{
 		await addRequestCaptchaToken(formData, 'infaq');
 
-		return await moFetch.fetchApiJson('infaq/infaq/add/anonym', { body: formData });
+		return await moFetch.fetchApiJson('infaq/infaq/add', { body: formData });
 	};
 
 	moFetch.fetchInfaqList = async (body) =>
