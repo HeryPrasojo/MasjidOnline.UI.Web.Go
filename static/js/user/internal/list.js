@@ -9,8 +9,6 @@
 
     function onDOMContentLoaded()
     {
-        const internalUserAddButton = mo.getElementById('internalUserAddButton');
-
         const internalUserRowHolder = mo.getElementById('internalUserRowHolder');
         const internalUserPageForm = mo.getElementById('formInternalUserPage');
         const internalUserPageCurrent = mo.getElementById('internalUserPageCurrent');
@@ -28,8 +26,6 @@
 
         var currentPage = 1;
         var totalPage = 0;
-
-        internalUserAddButton.addEventListener('click', () => location.href = '/user/internal/add');
 
         internalUserFirstButton.addEventListener('click', submitFirst);
         internalUserPrevButton.addEventListener('click', submitPrev);
