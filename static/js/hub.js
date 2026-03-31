@@ -49,6 +49,7 @@ const moHub = {};
 
     connection.on('logout', () =>
     {
+        moCookie.removeUserId();
         moCookie.removePermission();
         moCookie.removeUserType();
 

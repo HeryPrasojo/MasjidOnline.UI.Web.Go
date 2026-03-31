@@ -104,7 +104,7 @@
                 const data = json.Data;
 
                 moCookie.setPermission(data.Permission);
-
+                moCookie.setUserId(data.UserId);
                 moCookie.setUserType(data.UserType);
 
                 if (data.ApplicationCulture) moCookie.setApplicationCulture(data.ApplicationCulture);

@@ -85,6 +85,14 @@ func buildEndpoints() {
 			UseNavigation: true,
 		},
 
+		"/user/internal/permission": {
+			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
+				return (userType == 5) && permission.UserInternalPermissionUpdate
+			},
+			Title:         "Internal User Permission",
+			UseNavigation: true,
+		},
+
 		"/user/internal/view": {
 			AuthorizeFunction: func(userType UserType, permission *Permission) bool {
 				return (userType == 5) && (permission.UserInternalAdd || permission.UserInternalApprove)

@@ -112,7 +112,7 @@
                 const data = json.Data;
 
                 moCookie.setPermission(data.Permission);
-
+                moCookie.setUserId(data.UserId);
                 moCookie.setUserType(data.UserType);
 
                 messageElement.textContent = 'Success, redirecting...';

@@ -18,6 +18,7 @@
 
     async function layout()
     {
+        const relatedGroupElement = mo.getElementById('relatedGroup');
         const internalUserMessage = mo.getElementById('internalUserMessage');
         const internalUserIdElement = mo.getElementById('internalUserIdField');
         const dateTimeElement = mo.getElementById('dateTimeField');
@@ -96,6 +97,12 @@
                 // not approve
                 if (data.Status != 4) descriptionRowElement.classList.remove('display-none');
             }
+            // console.log(moCookie.getUserId());
+            // console.log(internalUserId);
+            // console.log(moCookie.getUserId() == internalUserId);
+            if (moCookie.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
+            else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
+            else relatedGroupElement.classList.add('display-none');
 
 
             dateTimeElement.textContent = data.DateTime;
