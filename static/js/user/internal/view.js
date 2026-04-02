@@ -97,10 +97,8 @@
                 // not approve
                 if (data.Status != 4) descriptionRowElement.classList.remove('display-none');
             }
-            // console.log(moCookie.getUserId());
-            // console.log(internalUserId);
-            // console.log(moCookie.getUserId() == internalUserId);
-            if (moCookie.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
+
+            if (moStorage.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
             else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
             else relatedGroupElement.classList.add('display-none');
 

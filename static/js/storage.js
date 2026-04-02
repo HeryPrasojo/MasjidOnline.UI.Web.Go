@@ -4,6 +4,7 @@ const moStorage = {};
 {
     const recommendationNoteStorageKey = 'recommendationNote';
     const sessionIdStorageKey = 'sessionId';
+    const userIdStorageKey = 'userId';
 
 
     moStorage.removeRecommendationNote = () =>
@@ -35,6 +36,22 @@ const moStorage = {};
     moStorage.setSession = (id) =>
     {
         localStorage.setItem(sessionIdStorageKey, id);
+    }
+
+
+    moStorage.getUserId = () =>
+    {
+        return localStorage.getItem(userIdStorageKey);
+    };
+
+    moStorage.removeUserId = () =>
+    {
+        localStorage.removeItem(userIdStorageKey);
+    };
+
+    moStorage.setUserId = (id) =>
+    {
+        localStorage.setItem(userIdStorageKey, id);
     }
 
 })();

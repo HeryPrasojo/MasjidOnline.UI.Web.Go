@@ -44,10 +44,6 @@ const moCookie = {};
         }
     }
 
-    moCookie.getUserId = () => getCookie(userIdKey);
-    moCookie.removeUserId = () => removeCookie(userIdKey);
-    moCookie.setUserId = (i) => setCookie(userIdKey, i);
-
     moCookie.getUserType = () => getCookie(userTypeKey);
     moCookie.removeUserType = () => removeCookie(userTypeKey);
     moCookie.setUserType = (t) => setCookie(userTypeKey, t);

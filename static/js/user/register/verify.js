@@ -112,8 +112,9 @@
                 const data = json.Data;
 
                 moCookie.setPermission(data.Permission);
-                moCookie.setUserId(data.UserId);
                 moCookie.setUserType(data.UserType);
+
+                moStorage.setUserId(data.UserId);
 
                 messageElement.textContent = 'Success, redirecting...';
                 messageElement.classList.toggle("loading");
