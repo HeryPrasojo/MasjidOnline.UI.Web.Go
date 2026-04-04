@@ -2,7 +2,7 @@
 <h1>Internal User View</h1>
 {{ if .Permission.UserInternalPermissionUpdate }}
 <div class='display-none' id='relatedGroup'>
-    <a href='/user/internal/permission'>{{ .T "Permission" }}</a>
+    <a id='permissionLink' href='/user/internal/permission'>{{ .T "Permission" }}</a>
 </div>
 {{ end }}
 <div id='internalUserMessage' class='spacer-top loading'>Loading ...</div>

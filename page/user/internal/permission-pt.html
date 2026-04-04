@@ -2,43 +2,51 @@
 <h1>{{ .T "Internal User Permission" }}</h1>
 <form id='permissionForm' class='form'>
     <div class='field'>
-        <div class='label'>{{ .T "Accountancy Expenditure" }}</div>
+        <div class='label checkbox'>{{ .T "Accountancy Expenditure" }}</div>
         <div class='value'>
-            <input type='checkbox' id='accountancyExpenditureAddInput' placeholder='' />
-            <label class='noContent' for='accountancyExpenditureAddInput'>{{ .T "Add" }}</label>
-        </div>
-        <div class='value'>
-            <input type='checkbox' id='accountancyExpenditureApproveInput' placeholder='' />
-            <label class='noContent' for='accountancyExpenditureApproveInput'>{{ .T "Approve" }}</label>
-        </div>
-    </div>
-    <div class='field spacer-top'>
-        <div class='label'>{{ .T "Infaq Status" }}</div>
-        <div class='value'>
-            <input type='checkbox' id='infaqStatusAddInput' placeholder='' />
-            <label class='noContent' for='infaqStatusAddInput'>{{ .T "Add" }}</label>
-        </div>
-        <div class='value'>
-            <input type='checkbox' id='infaqStatusApproveInput' placeholder='' />
-            <label class='noContent' for='infaqStatusApproveInput'>{{ .T "Approve" }}</label>
+            <div>
+                <input type='checkbox' id='accountancyExpenditureAddInput' placeholder='' />
+                <label class='noContent' for='accountancyExpenditureAddInput'>{{ .T "Add" }}</label>
+            </div>
+            <div>
+                <input type='checkbox' id='accountancyExpenditureApproveInput' placeholder='' />
+                <label class='noContent' for='accountancyExpenditureApproveInput'>{{ .T "Approve" }}</label>
+            </div>
         </div>
     </div>
     <div class='field spacer-top'>
-        <div class='label'>{{ .T "Internal User" }}</div>
+        <div class='label checkbox'>{{ .T "Infaq Status" }}</div>
         <div class='value'>
-            <input type='checkbox' id='internalUserAddInput' placeholder='' />
-            <label class='noContent' for='internalUserAddInput'>{{ .T "Add" }}</label>
-        </div>
-        <div class='value'>
-            <input type='checkbox' id='internalUserApproveInput' placeholder='' />
-            <label class='noContent' for='internalUserApproveInput'>{{ .T "Approve" }}</label>
+            <div>
+                <input type='checkbox' id='infaqStatusAddInput' placeholder='' />
+                <label class='noContent' for='infaqStatusAddInput'>{{ .T "Add" }}</label>
+            </div>
+            <div>
+                <input type='checkbox' id='infaqStatusApproveInput' placeholder='' />
+                <label class='noContent' for='infaqStatusApproveInput'>{{ .T "Approve" }}</label>
+            </div>
         </div>
     </div>
     <div class='field spacer-top'>
-        <div class='label'>{{ .T "Internal User Permission" }}</div>
+        <div class='label checkbox'>{{ .T "Internal User" }}</div>
         <div class='value'>
-            <input type='checkbox' id='internalUserPermissionUpdateInput' placeholder='' />
-            <label class='noContent' for='internalUserPermissionUpdateInput'>{{ .T "Update" }}</label>
+            <div>
+                <input type='checkbox' id='internalUserAddInput' placeholder='' />
+                <label class='noContent' for='internalUserAddInput'>{{ .T "Add" }}</label>
+            </div>
+            <div>
+                <input type='checkbox' id='internalUserApproveInput' placeholder='' />
+                <label class='noContent' for='internalUserApproveInput'>{{ .T "Approve" }}</label>
+            </div>
+        </div>
+    </div>
+    <div class='field spacer-top'>
+        <div class='label checkbox'>{{ .T "Internal User Permission" }}</div>
+        <div class='value'>
+            <div>
+                <input type='checkbox' id='internalUserPermissionUpdateInput' placeholder='' />
+                <label class='noContent' for='internalUserPermissionUpdateInput'>{{ .T "Update" }}</label>
+            </div>
         </div>
     </div>
     <div class='message spacer-top'>

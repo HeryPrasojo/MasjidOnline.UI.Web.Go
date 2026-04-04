@@ -19,6 +19,7 @@
     async function layout()
     {
         const relatedGroupElement = mo.getElementById('relatedGroup');
+        const permissionLinkElement = mo.getElementById('permissionLink');
         const internalUserMessage = mo.getElementById('internalUserMessage');
         const internalUserIdElement = mo.getElementById('internalUserIdField');
         const dateTimeElement = mo.getElementById('dateTimeField');
@@ -82,6 +83,24 @@
 
             const data = json.Data;
 
+            if (moStorage.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
+            else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
+            else relatedGroupElement.classList.add('display-none');
+
+            permissionLinkElement.setAttribute('href', `/user/internal/permission?i=${data.UserId}`);
+
+            dateTimeElement.textContent = data.DateTime;
+            descriptionElement.textContent = data.Description;
+            nameElement.textContent = data.PersonName;
+            contactElement.textContent = `${data.ContactType}: ${data.Contact}`;
+            addNameElement.textContent += ` (${data.AddContactType}: ${data.AddContact})`;
+            statusElement.textContent = data.StatusText;
+            editDateTimeElement.textContent = data.EditDateTime;
+
+            addNameElement.textContent = data.AddPersonName;
+            editNameElement.textContent = data.EditPersonName ?? '';
+            if (data.EditDateTime) editNameElement.textContent += ` (${data.EditContactType}: ${data.EditContact})`;
+
             // new
             if (data.Status == 1)
             {
@@ -97,23 +116,6 @@
                 // not approve
                 if (data.Status != 4) descriptionRowElement.classList.remove('display-none');
             }
-
-            if (moStorage.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
-            else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
-            else relatedGroupElement.classList.add('display-none');
-
-
-            dateTimeElement.textContent = data.DateTime;
-            descriptionElement.textContent = data.Description;
-            nameElement.textContent = data.PersonName;
-            contactElement.textContent = `${data.ContactType}: ${data.Contact}`;
-            addNameElement.textContent += ` (${data.AddContactType}: ${data.AddContact})`;
-            statusElement.textContent = data.StatusText;
-            editDateTimeElement.textContent = data.EditDateTime;
-
-            addNameElement.textContent = data.AddPersonName;
-            editNameElement.textContent = data.EditPersonName ?? '';
-            if (data.EditDateTime) editNameElement.textContent += ` (${data.EditContactType}: ${data.EditContact})`;
 
 
             internalUserMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
