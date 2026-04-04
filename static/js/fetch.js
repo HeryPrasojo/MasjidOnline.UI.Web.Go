@@ -115,7 +115,7 @@ const moFetch = {};
 
 	moFetch.fetchInfaqView = async (body) =>
 	{
-		return await moFetch.fetchApiJson('infaq/infaq/getOne', { body });
+		return await moFetch.fetchApiJson('infaq/infaq/getView', { body });
 	};
 
 	moFetch.fetchLogin = async (body) =>

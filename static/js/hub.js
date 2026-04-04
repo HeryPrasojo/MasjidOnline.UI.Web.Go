@@ -92,7 +92,7 @@ const moHub = {};
 
     moHub.receiveUserInternalView = (request) =>
     {
-        return invoke("UserInternalGetOne", request);
+        return invoke("UserInternalGetView", request);
     }
 
 
