@@ -18,13 +18,58 @@
 
     function layout()
     {
-        if (moHub.isStarted) receiveUserInternalView();
+        const internalUserPermissionMessage = mo.getElementById('internalUserPermissionMessage');
+        const accountancyExpenditureAddElement = mo.getElementById('accountancyExpenditureAddInput');
+        const accountancyExpenditureApproveElement = mo.getElementById('accountancyExpenditureApproveInput');
+        const infaqStatusAddElement = mo.getElementById('infaqStatusAddInput');
+        const infaqStatusApproveElement = mo.getElementById('infaqStatusApproveInput');
+        const internalUserAddElement = mo.getElementById('internalUserAddInput');
+        const internalUserApproveElement = mo.getElementById('internalUserApproveInput');
+        const internalUserPermissionUpdateElement = mo.getElementById('internalUserPermissionUpdateInput');
 
-        else document.addEventListener('hub.started', receiveUserInternalView);
-    }
+        const messageColor = internalUserPermissionMessage.style.color;
 
-    async function receiveUserInternalView()
-    {
+
+        if (moHub.isStarted) receiveUserInternalPermissionView();
+
+        else document.addEventListener('hub.started', receiveUserInternalPermissionView);
+
+
+        async function receiveUserInternalPermissionView()
+        {
+            internalUserPermissionMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+            internalUserPermissionMessage.classList.add("loading");
+
+            const body = {
+                UserId: internalUserId,
+            };
+
+            const json = await moHub.receiveUserInternalPermissionView(body);
+
+            if (json.ResultCode) return showError(json.ResultMessage);
+
+
+            const data = json.Data;
+
+            accountancyExpenditureAddElement.checked = data.AccountancyExpenditureAdd;
+            accountancyExpenditureApproveElement.checked = data.AccountancyExpenditureApprove;
+            infaqStatusAddElement.checked = data.InfaqStatusAdd;
+            infaqStatusApproveElement.checked = data.InfaqStatusApprove;
+            internalUserAddElement.checked = data.InternalUserAdd;
+            internalUserApproveElement.checked = data.InternalUserApprove;
+            internalUserPermissionUpdateElement.checked = data.InternalUserPermissionUpdate;
+
+            internalUserPermissionMessage.classList.remove("loading");
+            internalUserPermissionMessage.style.color = messageColor;
+            internalUserPermissionMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+        }
+
+        function showError(e)
+        {
+            internalUserPermissionMessage.classList.remove("loading");
+            internalUserPermissionMessage.classList.add("color-error");
+            internalUserPermissionMessage.textContent = e;
+        }
     }
 
 })();

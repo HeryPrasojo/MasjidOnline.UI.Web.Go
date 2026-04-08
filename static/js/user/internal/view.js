@@ -119,6 +119,7 @@
 
 
             internalUserMessage.textContent = '\u00A0\u00A0\u00A0\u00A0';
+            internalUserMessage.style.color = messageColor;
             internalUserMessage.classList.toggle("loading");
         }
 
@@ -149,7 +150,7 @@
             }
             catch (e)
             {
-                showError(e.message);
+                showApproveError(e.message);
             }
         }
 

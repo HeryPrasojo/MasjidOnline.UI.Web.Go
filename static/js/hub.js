@@ -82,7 +82,7 @@ const moHub = {};
 
     moHub.receiveUserInternalList = (request) =>
     {
-        return invoke("UserInternalGetMany", request);
+        return invoke("UserInternalTable", request);
     }
 
     moHub.sendUserInternalReject = (request) =>
@@ -92,7 +92,13 @@ const moHub = {};
 
     moHub.receiveUserInternalView = (request) =>
     {
-        return invoke("UserInternalGetView", request);
+        return invoke("UserInternalView", request);
+    }
+
+
+    moHub.receiveUserInternalPermissionView = (request) =>
+    {
+        return invoke("UserInternalPermissionView", request);
     }
 
 
@@ -128,9 +134,13 @@ const moHub = {};
         return await grecaptcha.enterprise.execute(mo.recaptchaSiteKey, { action: mo.recaptchaActionPrefix + action });
     }
 
-    function invoke(methodName, ...requests)
+    async function invoke(methodName, ...requests)
     {
-        return connection.invoke(methodName, ...requests);
+        const result = await connection.invoke(methodName, ...requests);
+
+        console.log('invoke result: \n', result);
+
+        return result;
     }
 
     async function startConnection()
