@@ -101,6 +101,11 @@ const moHub = {};
         return invoke("UserInternalPermissionView", request);
     }
 
+    moHub.sendUserInternalPermissionUpdate = (request) =>
+    {
+        return invoke("UserInternalPermissionUpdate", request);
+    }
+
 
     startConnection();
 
