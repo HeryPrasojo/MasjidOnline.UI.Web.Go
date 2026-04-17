@@ -57,7 +57,7 @@
                     {{ end }}
                     {{ if ne .User.Type 1 }}
                     <li class='navPortraitTheRestItem linkStyle' id='navPortraitLogout'>
-                        <a>Logout</a>
+                        <a>Logout {{ .User.Name }}</a>
                     </li>
                     {{ end }}
                 </ul>

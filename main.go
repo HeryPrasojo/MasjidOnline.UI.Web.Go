@@ -221,6 +221,12 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	var personName string
+	cookie, _ = r.Cookie("pn.n")
+	if cookie != nil {
+		personName = cookie.Value
+	}
+
 	var userType UserType
 	cookie, _ = r.Cookie("u.t")
 	if cookie != nil {
@@ -261,6 +267,7 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 		Orientation: orientation,
 		Permission:  &permission,
 		User: &User{
+			Name: personName,
 			Type: userType,
 		},
 		Title: endpoint.Title,

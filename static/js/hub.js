@@ -49,8 +49,9 @@ const moHub = {};
 
     connection.on('logout', () =>
     {
-        moCookie.removeUserId();
         moCookie.removePermission();
+        moCookie.removePersonName();
+        moCookie.removeUserId();
         moCookie.removeUserType();
 
         location.href = '/';

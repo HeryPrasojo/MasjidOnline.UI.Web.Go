@@ -104,6 +104,7 @@
                 const data = json.Data;
 
                 moCookie.setPermission(data.Permission);
+                moCookie.setPersonName(data.PersonName);
                 moCookie.setUserType(data.UserType);
 
                 moStorage.setUserId(data.UserId);

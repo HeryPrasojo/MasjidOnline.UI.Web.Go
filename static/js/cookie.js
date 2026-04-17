@@ -11,6 +11,7 @@ const moCookie = {};
     const permissionUserInternalAddKey = 'p.ui.ad';
     const permissionUserInternalApproveKey = 'p.ui.ap';
     const permissionUserInternalPermissionUpdateKey = 'p.ui.pu';
+    const personNameKey = 'pn.n';
     const userIdKey = 'u.i';
     const userTypeKey = 'u.t';
 
@@ -43,6 +44,14 @@ const moCookie = {};
             if (p.UserInternalPermissionUpdate) setCookie(permissionUserInternalPermissionUpdateKey, 1);
         }
     }
+
+    moCookie.getPersonName = () => getCookie(personNameKey);
+    moCookie.removePersonName = () => removeCookie(personNameKey);
+    moCookie.setPersonName = (n) => setCookie(personNameKey, n);
+
+    moCookie.getUserId = () => getCookie(userIdKey);
+    moCookie.removeUserId = () => removeCookie(userIdKey);
+    moCookie.setUserId = (i) => setCookie(userIdKey, i);
 
     moCookie.getUserType = () => getCookie(userTypeKey);
     moCookie.removeUserType = () => removeCookie(userTypeKey);
