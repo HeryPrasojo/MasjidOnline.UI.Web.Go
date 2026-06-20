@@ -110,12 +110,12 @@ const moFetch = {};
 
 	moFetch.fetchInfaqList = async (body) =>
 	{
-		return await moFetch.fetchApiJson('infaq/infaq/getMany', { body });
+		return await moFetch.fetchApiJson('infaq/infaq/table', { body });
 	};
 
 	moFetch.fetchInfaqView = async (body) =>
 	{
-		return await moFetch.fetchApiJson('infaq/infaq/getView', { body });
+		return await moFetch.fetchApiJson('infaq/infaq/view', { body });
 	};
 
 	moFetch.fetchLogin = async (body) =>
@@ -150,12 +150,12 @@ const moFetch = {};
 
 	moFetch.fetchUserInternalList = async (body) =>
 	{
-		return await moFetch.fetchApiJson('user/internal/getMany', { body });
+		return await moFetch.fetchApiJson('user/internal/table', { body });
 	};
 
 	moFetch.fetchUserInternalView = async (body) =>
 	{
-		return await moFetch.fetchApiJson('user/internal/getOne', { body });
+		return await moFetch.fetchApiJson('user/internal/view', { body });
 	};
 
 	moFetch.fetchVerifyRegister = async (body) =>
