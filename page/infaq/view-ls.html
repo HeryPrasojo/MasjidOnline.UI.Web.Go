@@ -26,5 +26,17 @@
         <div class='label'>Status</div>
         <div class='value' id='status'></div>
     </div>
+
+    {{ if or .Permission.InfaqStatusRequest .Permission.InfaqStatusApprove }}
+    <div class='button spacer-top display-none' id='buttonRow'>
+
+        {{ if or .Permission.InfaqStatusRequest .Permission.InfaqStatusApprove }}
+        <button type='button' id='approveButton'>Approve</button>
+        <button type='button' id='rejectButton'>Reject</button>
+        {{ end }}
+
+    </div>
+    {{ end }}
+
 </div>
 {{ end }}
