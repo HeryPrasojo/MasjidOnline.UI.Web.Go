@@ -31,8 +31,8 @@ type Orientation int
 type Permission struct {
 	AccountancyExpenditureAdd     bool
 	AccountancyExpenditureApprove bool
-	InfaqStatusApprove            bool
-	InfaqStatusRequest            bool
+	DonationStatusApprove            bool
+	DonationStatusRequest            bool
 	UserInternalAdd               bool
 	UserInternalApprove           bool
 	UserInternalPermissionUpdate  bool
@@ -185,7 +185,7 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 		o, _ := strconv.Atoi(cookie.Value)
 		if o == 1 {
-			permission.InfaqStatusApprove = true
+			permission.DonationStatusApprove = true
 		}
 	}
 	cookie, _ = r.Cookie("p.ii.re")
@@ -193,7 +193,7 @@ func handleHttp(w http.ResponseWriter, r *http.Request) {
 
 		o, _ := strconv.Atoi(cookie.Value)
 		if o == 1 {
-			permission.InfaqStatusRequest = true
+			permission.DonationStatusRequest = true
 		}
 	}
 	cookie, _ = r.Cookie("p.ui.ad")

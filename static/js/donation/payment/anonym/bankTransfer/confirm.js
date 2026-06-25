@@ -66,7 +66,7 @@
                 for (const file of bankTransferFilesElement.files)
                     formData.append('files[]', file);
 
-                const json = await moFetch.fetchAnonymInfaqBankTransfer(formData);
+                const json = await moFetch.fetchAnonymDonationBankTransfer(formData);
 
                 if (json.ResultCode) return showError(json.ResultMessage);
 
@@ -76,7 +76,7 @@
 
                 bankTransferSubmitElement.classList.toggle("loading");
 
-                moDialog.showModal('Confirmation submitted. Thank you!', () => location.href = '/infaq/list');
+                moDialog.showModal('Confirmation submitted. Thank you!', () => location.href = '/donation/list');
             }
             catch (err)
             {

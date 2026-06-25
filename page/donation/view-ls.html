@@ -1,10 +1,10 @@
-{{ define "content-pt" }}
+{{ define "content-ls" }}
 <h1>{{ .T .Title }}</h1>
 <div id='viewMessage' class='loading'>Loading ...</div>
 <div class='view spacer-top'>
     <div class='field'>
-        <div class='label'>Infaq Id</div>
-        <div class='value' id='infaqId'></div>
+        <div class='label'>Donation Id</div>
+        <div class='value' id='donationId'></div>
     </div>
     <div class='field'>
         <div class='label'>Date</div>
@@ -26,5 +26,17 @@
         <div class='label'>Status</div>
         <div class='value' id='status'></div>
     </div>
+
+    {{ if or .Permission.DonationStatusRequest .Permission.DonationStatusApprove }}
+    <div class='button spacer-top display-none' id='buttonRow'>
+
+        {{ if or .Permission.DonationStatusRequest .Permission.DonationStatusApprove }}
+        <button type='button' id='approveButton'>Approve</button>
+        <button type='button' id='rejectButton'>Reject</button>
+        {{ end }}
+
+    </div>
+    {{ end }}
+
 </div>
 {{ end }}

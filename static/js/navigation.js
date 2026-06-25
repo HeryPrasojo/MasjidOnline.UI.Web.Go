@@ -33,7 +33,7 @@
 
 			const navPortraitTheRestButton = mo.getElementById('navPortraitTheRestButton');
 			const navPortraitTheRest = mo.getElementById('navPortraitTheRest');
-			const navPortraitTheRestSubItemParentInfaqButton = mo.getElementById('navPortraitTheRestSubItemParentInfaqButton');
+			const navPortraitTheRestSubItemParentDonationButton = mo.getElementById('navPortraitTheRestSubItemParentDonationButton');
 
 			navPortraitTheRestButton.addEventListener("click", onClick);
 
@@ -46,7 +46,7 @@
 
 			function onWindowClick(event)
 			{
-				if ((event.target != navPortraitTheRestButton) && (event.target != navPortraitTheRestSubItemParentInfaqButton))
+				if ((event.target != navPortraitTheRestButton) && (event.target != navPortraitTheRestSubItemParentDonationButton))
 				{
 					navPortraitTheRest.classList.add("display-none");
 				}

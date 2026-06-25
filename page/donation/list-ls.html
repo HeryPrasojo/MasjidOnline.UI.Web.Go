@@ -1,0 +1,52 @@
+{{ define "content-ls" }}
+<h1>{{ .T .Title }}</h1>
+<div class='tableContainer'>
+    <table id='donationTable'>
+        <caption>Donation List</caption>
+        <colgroup>
+            <col class='donationId' />
+            <col class='date' />
+            <col class='munfiqName' />
+            <col class='payment' />
+            <col class='amount' />
+            <col class='status' />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date Time</th>
+                <th>Munfiq Name</th>
+                <th>Payment</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="donationRowHolder">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Page <span id='donationPageCurrent'></span> of <span id='donationPageTotal'></span></td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <p id='donationErrorMessage'></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <form id='formDonationPage'>
+                        <button type='button' id='donationFirstButton' disabled>First</button>
+                        <button type='button' id='donationPrevButton' disabled>Previous</button>
+
+                        <input type='number' id='donationPageInput' value='1' min='1' required />
+                        <button type='button' id='donationGoButton'>Go</button>
+
+                        <button type='button' id='donationNextButton' disabled>Next</button>
+                        <button type='button' id='donationLastButton' disabled>Last</button>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{{ end }}

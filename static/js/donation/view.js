@@ -18,7 +18,7 @@
 
         try
         {
-            const json = await moFetch.fetchInfaqView({
+            const json = await moFetch.fetchDonationView({
                 Id: id,
             });
 
@@ -53,14 +53,14 @@
 
     function displayData()
     {
-        const infaqIdElement = mo.getElementById('infaqId');
+        const donationIdElement = mo.getElementById('donationId');
         const dateTimeElement = mo.getElementById('dateTime');
         const munfiqNameElement = mo.getElementById('munfiqName');
         const paymentElement = mo.getElementById('payment');
         const amountElement = mo.getElementById('amount');
         const statusElement = mo.getElementById('status');
 
-        infaqIdElement.innerHTML = id;
+        donationIdElement.innerHTML = id;
 
         dateTimeElement.innerHTML = data.DateTime;
         munfiqNameElement.innerHTML = data.MunfiqName;

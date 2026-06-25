@@ -19,24 +19,24 @@
 
     function displayData()
     {
-        const infaqRowHolder = mo.getElementById('infaqRowHolder');
-        const infaqPageCurrent = mo.getElementById('infaqPageCurrent');
-        const infaqPageTotal = mo.getElementById('infaqPageTotal');
-        const infaqErrorMessage = mo.getElementById('infaqErrorMessage');
-        const infaqFirstButton = mo.getElementById('infaqFirstButton');
-        const infaqPrevButton = mo.getElementById('infaqPrevButton');
-        const infaqPageInput = mo.getElementById('infaqPageInput');
-        const infaqGoButton = mo.getElementById('infaqGoButton');
-        const infaqNextButton = mo.getElementById('infaqNextButton');
-        const infaqLastButton = mo.getElementById('infaqLastButton');
+        const donationRowHolder = mo.getElementById('donationRowHolder');
+        const donationPageCurrent = mo.getElementById('donationPageCurrent');
+        const donationPageTotal = mo.getElementById('donationPageTotal');
+        const donationErrorMessage = mo.getElementById('donationErrorMessage');
+        const donationFirstButton = mo.getElementById('donationFirstButton');
+        const donationPrevButton = mo.getElementById('donationPrevButton');
+        const donationPageInput = mo.getElementById('donationPageInput');
+        const donationGoButton = mo.getElementById('donationGoButton');
+        const donationNextButton = mo.getElementById('donationNextButton');
+        const donationLastButton = mo.getElementById('donationLastButton');
 
-        const paymentElement = document.querySelector("#infaqTable .payment");
+        const paymentElement = document.querySelector("#donationTable .payment");
 
-        infaqFirstButton.addEventListener('click', submitFirst);
-        infaqPrevButton.addEventListener('click', submitPrev);
-        infaqGoButton.addEventListener('click', submitNumber);
-        infaqNextButton.addEventListener('click', submitNext);
-        infaqLastButton.addEventListener('click', submitLast);
+        donationFirstButton.addEventListener('click', submitFirst);
+        donationPrevButton.addEventListener('click', submitPrev);
+        donationGoButton.addEventListener('click', submitNumber);
+        donationNextButton.addEventListener('click', submitNext);
+        donationLastButton.addEventListener('click', submitLast);
 
         submitForm(currentPage);
 
@@ -53,13 +53,13 @@
 
         async function submitNumber()
         {
-            const pageNumber = parseInt(infaqPageInput.value, 10);
+            const pageNumber = parseInt(donationPageInput.value, 10);
 
             if (isNaN(pageNumber) || pageNumber < 1)
             {
                 const text = 'Invalid page number. Page number must be a positive integer.';
 
-                infaqErrorMessage.innerHTML = text;
+                donationErrorMessage.innerHTML = text;
 
                 throw Error(text);
             }
@@ -81,23 +81,23 @@
         {
             if (isNaN(pageNumber) || pageNumber < 1)
             {
-                infaqErrorMessage.innerHTML = 'Invalid page number. Page number must be a positive integer.';
+                donationErrorMessage.innerHTML = 'Invalid page number. Page number must be a positive integer.';
 
                 return;
             }
 
-            infaqRowHolder.innerHTML = '';
-            infaqErrorMessage.innerHTML = '';
+            donationRowHolder.innerHTML = '';
+            donationErrorMessage.innerHTML = '';
 
-            infaqFirstButton.disabled = true;
-            infaqPrevButton.disabled = true;
-            infaqGoButton.disabled = true;
-            infaqNextButton.disabled = true;
-            infaqLastButton.disabled = true;
+            donationFirstButton.disabled = true;
+            donationPrevButton.disabled = true;
+            donationGoButton.disabled = true;
+            donationNextButton.disabled = true;
+            donationLastButton.disabled = true;
 
             try
             {
-                const json = await moFetch.fetchInfaqList({
+                const json = await moFetch.fetchDonationList({
                     Page: pageNumber
                 });
 
@@ -143,25 +143,25 @@
                     if (paymentElement) tr.append(paymentTypeTd);
                     tr.append(amountTd, paymentStatusTd);
 
-                    infaqRowHolder.append(tr);
+                    donationRowHolder.append(tr);
                 }
 
-                infaqPageCurrent.innerText = currentPage;
-                infaqPageTotal.innerText = totalPage;
+                donationPageCurrent.innerText = currentPage;
+                donationPageTotal.innerText = totalPage;
 
                 if (currentPage > 1)
                 {
-                    infaqFirstButton.disabled = false;
-                    infaqPrevButton.disabled = false;
+                    donationFirstButton.disabled = false;
+                    donationPrevButton.disabled = false;
                 }
 
-                infaqPageInput.value = currentPage;
-                infaqGoButton.disabled = false;
+                donationPageInput.value = currentPage;
+                donationGoButton.disabled = false;
 
                 if (currentPage < data.PageCount)
                 {
-                    infaqNextButton.disabled = false;
-                    infaqLastButton.disabled = false;
+                    donationNextButton.disabled = false;
+                    donationLastButton.disabled = false;
                 }
             }
             catch (err)
@@ -173,8 +173,8 @@
 
             function showError(e)
             {
-                infaqErrorMessage.textContent = e;
-                infaqErrorMessage.style.color = 'red';
+                donationErrorMessage.textContent = e;
+                donationErrorMessage.style.color = 'red';
             }
         }
     }

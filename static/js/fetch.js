@@ -101,21 +101,21 @@ const moFetch = {};
 	};
 
 
-	moFetch.fetchAnonymInfaqBankTransfer = async (formData) =>
+	moFetch.fetchAnonymDonationBankTransfer = async (formData) =>
 	{
-		await addRequestCaptchaToken(formData, 'infaq');
+		await addRequestCaptchaToken(formData, 'donation');
 
-		return await moFetch.fetchApiJson('infaq/infaq/add', { body: formData });
+		return await moFetch.fetchApiJson('donation/donation/add', { body: formData });
 	};
 
-	moFetch.fetchInfaqList = async (body) =>
+	moFetch.fetchDonationList = async (body) =>
 	{
-		return await moFetch.fetchApiJson('infaq/infaq/table', { body });
+		return await moFetch.fetchApiJson('donation/donation/table', { body });
 	};
 
-	moFetch.fetchInfaqView = async (body) =>
+	moFetch.fetchDonationView = async (body) =>
 	{
-		return await moFetch.fetchApiJson('infaq/infaq/view', { body });
+		return await moFetch.fetchApiJson('donation/donation/view', { body });
 	};
 
 	moFetch.fetchLogin = async (body) =>

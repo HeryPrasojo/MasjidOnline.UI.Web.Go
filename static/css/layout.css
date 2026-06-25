@@ -171,12 +171,12 @@ body
         display: flex;
     }
 
-    #navPortraitTheRestSubItemParentInfaqText
+    #navPortraitTheRestSubItemParentDonationText
     {
         flex: 1 1 auto;
     }
 
-    #navPortraitTheRestSubItemParentInfaqButtonHolder
+    #navPortraitTheRestSubItemParentDonationButtonHolder
     {
         flex: 0 0 1.5em;
     }

@@ -1,29 +1,29 @@
-#infaqTable .infaqId
+#donationTable .donationId
 {
     min-width: 6em;
 }
 
-#infaqTable .date
+#donationTable .date
 {
     min-width: 10em;
 }
 
-#infaqTable .munfiqName
+#donationTable .munfiqName
 {
     min-width: 11em;
 }
 
-#infaqTable .payment
+#donationTable .payment
 {
     min-width: 11em;
 }
 
-#infaqTable .amount
+#donationTable .amount
 {
     min-width: 6em;
 }
 
-#infaqTable .status
+#donationTable .status
 {
     min-width: 5em;
 }

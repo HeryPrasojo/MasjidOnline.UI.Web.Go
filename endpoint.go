@@ -32,32 +32,32 @@ func buildEndpoints() {
 			UseNavigation: true,
 		},
 
-		"/infaq": {
-			Title:         "Infaq",
+		"/donation": {
+			Title:         "Donation",
 			UseNavigation: true,
 		},
 
-		"/infaq/list": {
-			Title:         "Infaq List",
+		"/donation/list": {
+			Title:         "Donation List",
 			UseNavigation: true,
 		},
 
-		"/infaq/payment": {
+		"/donation/payment": {
 			Title:         "Payment",
 			UseNavigation: true,
 		},
 
-		"/infaq/payment/anonym/bankTransfer": {
+		"/donation/payment/anonym/bankTransfer": {
 			Title:         "Bank Transfer",
 			UseNavigation: true,
 		},
 
-		"/infaq/payment/anonym/bankTransfer/confirm": {
+		"/donation/payment/anonym/bankTransfer/confirm": {
 			Title: "Bank Transfer Confirmation",
 		},
 
-		"/infaq/view": {
-			Title:         "Infaq View",
+		"/donation/view": {
+			Title:         "Donation View",
 			UseNavigation: true,
 		},
 

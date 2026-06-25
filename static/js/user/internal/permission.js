@@ -21,8 +21,8 @@
         const internalUserPermissionMessage = mo.getElementById('internalUserPermissionMessage');
         const accountancyExpenditureAddElement = mo.getElementById('accountancyExpenditureAddInput');
         const accountancyExpenditureApproveElement = mo.getElementById('accountancyExpenditureApproveInput');
-        const infaqStatusRequestElement = mo.getElementById('infaqStatusRequestInput');
-        const infaqStatusApproveElement = mo.getElementById('infaqStatusApproveInput');
+        const donationStatusRequestElement = mo.getElementById('donationStatusRequestInput');
+        const donationStatusApproveElement = mo.getElementById('donationStatusApproveInput');
         const internalUserAddElement = mo.getElementById('internalUserAddInput');
         const internalUserApproveElement = mo.getElementById('internalUserApproveInput');
         const internalUserPermissionUpdateElement = mo.getElementById('internalUserPermissionUpdateInput');
@@ -56,8 +56,8 @@
 
             accountancyExpenditureAddElement.checked = data.AccountancyExpenditureAdd;
             accountancyExpenditureApproveElement.checked = data.AccountancyExpenditureApprove;
-            infaqStatusRequestElement.checked = data.InfaqStatusRequest;
-            infaqStatusApproveElement.checked = data.InfaqStatusApprove;
+            donationStatusRequestElement.checked = data.DonationStatusRequest;
+            donationStatusApproveElement.checked = data.DonationStatusApprove;
             internalUserAddElement.checked = data.UserInternalAdd;
             internalUserApproveElement.checked = data.UserInternalApprove;
             internalUserPermissionUpdateElement.checked = data.UserInternalPermissionUpdate;
@@ -89,8 +89,8 @@
                 UserId: internalUserId,
                 AccountancyExpenditureAdd: accountancyExpenditureAddElement.checked,
                 AccountancyExpenditureApprove: accountancyExpenditureApproveElement.checked,
-                InfaqStatusRequest: infaqStatusRequestElement.checked,
-                InfaqStatusApprove: infaqStatusApproveElement.checked,
+                DonationStatusRequest: donationStatusRequestElement.checked,
+                DonationStatusApprove: donationStatusApproveElement.checked,
                 UserInternalAdd: internalUserAddElement.checked,
                 UserInternalApprove: internalUserApproveElement.checked,
                 UserInternalPermissionUpdate: internalUserPermissionUpdateElement.checked
