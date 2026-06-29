@@ -4,14 +4,19 @@
     <p>Currently, we support donation using bank transfer only.</p>
 </div>
 <div id='method'>
-    <h2>Payment Method</h2>
+    <h2>Payment</h2>
     <ul id='methodList'>
         <li>
             <div>
-                {{ .T "Please follow" }} <a href='/donation/payment/anonym/bankTransfer'>{{ .T "Bank Transfer Instruction" }}</a>
+                <h3>Manual Bank Transfer</h3>
             </div>
             <div>
-                {{ .T "Or" }} <a href='/donation/payment/anonym/bankTransfer/confirm'>{{ .T "Bank Transfer Confirmation" }}</a> {{ .T "if you have already made the transfer." }}
+                <p>
+                    {{ .T "Please follow" }} <a href='/donation/payment/anonym/bankTransfer'>{{ .T "Bank Transfer Instruction" }}</a>.
+                </p>
+                <p>
+                    {{ .T "Or" }} <a href='/donation/payment/anonym/bankTransfer/confirm'>{{ .T "Bank Transfer Confirmation" }}</a> {{ .T "if you have already made the transfer." }}
+                </p>
             </div>
         </li>
     </ul>

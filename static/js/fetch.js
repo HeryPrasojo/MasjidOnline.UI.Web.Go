@@ -131,7 +131,7 @@ const moFetch = {};
 
 		await addRequestCaptchaToken(body, 'recommendationNote');
 
-		return await moFetch.fetchApiJson('payment/manual/getRecommendationNote', { body });
+		return await moFetch.fetchApiJson('donation/donation/recommendationNote', { body });
 	};
 
 	moFetch.fetchRegister = async (body) =>
