@@ -1,0 +1,21 @@
+{{ define "content-pt" }}
+<h1>{{ .T .Title }}</h1>
+<div id='method'>
+    <h2>Payment</h2>
+    <ul id='methodList'>
+        <li>
+            <div>
+                <h3>Manual Bank Transfer</h3>
+            </div>
+            <div>
+                <p>
+                    {{ .T "Please follow" }} <a href='/donation/payment/anonym/bankTransfer'>{{ .T "Bank Transfer Instruction" }}</a>.
+                </p>
+                <p>
+                    {{ .T "Or" }} <a href='/donation/payment/anonym/bankTransfer/confirm'>{{ .T "Bank Transfer Confirmation" }}</a> {{ .T "if you have already made the transfer." }}
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+{{ end }}
