@@ -50,10 +50,10 @@
 
 
         cancelButton.addEventListener('click', cancel);
-        approveButton.addEventListener('click', approve);
-        rejectButton.addEventListener('click', reject);
+        if (approveButton) approveButton.addEventListener('click', approve);
+        if (rejectButton) rejectButton.addEventListener('click', reject);
         cancel2Button.addEventListener('click', cancel2);
-        reject2Button.addEventListener('click', reject2);
+        if (reject2Button) reject2Button.addEventListener('click', reject2);
         cancelRejectCloseButton.addEventListener('click', () =>
         {
             cancelRejectDialog.close();
@@ -83,11 +83,14 @@
 
             const data = json.Data;
 
-            if (moStorage.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
-            else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
-            else relatedGroupElement.classList.add('display-none');
+            if (relatedGroupElement)
+            {
+                if (moStorage.getUserId() == data.UserId) relatedGroupElement.classList.add('display-none');
+                else if (data.Status == 4) relatedGroupElement.classList.remove('display-none');
+                else relatedGroupElement.classList.add('display-none');
+            }
 
-            permissionLinkElement.setAttribute('href', `/user/internal/permission?i=${data.UserId}`);
+            if (permissionLinkElement) permissionLinkElement.setAttribute('href', `/user/internal/permission?i=${data.UserId}`);
 
             dateTimeElement.textContent = data.DateTime;
             descriptionElement.textContent = data.Description;
