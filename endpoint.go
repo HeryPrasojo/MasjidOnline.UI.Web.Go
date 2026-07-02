@@ -42,6 +42,11 @@ func buildEndpoints() {
 			UseNavigation: true,
 		},
 
+		"/donation/payment": {
+			Title:         "Payment",
+			UseNavigation: true,
+		},
+
 		"/donation/payment/anonym/bankTransfer": {
 			Title:         "Bank Transfer",
 			UseNavigation: true,

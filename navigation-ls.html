@@ -14,7 +14,29 @@
 				</div>
 				<ul>
 					<li class='navLandscapeSubItem' id='navLandscapeDonationPayment'>
-						<a href='/donation/payment'>Payment</a>
+						<div>
+							<a href='/donation/payment'>Payment</a>
+						</div>
+						<ul>
+							<li>
+								<div>
+									{{ if eq .User.Type 1 }}
+									<a href='/donation/payment/anonym/bankTransfer'>Bank Transfer</a>
+									{{ else }}
+									<a href='/donation/payment/user/bankTransfer'>Bank Transfer</a>
+									{{ end }}
+								</div>
+								<ul>
+									<li>
+										{{ if eq .User.Type 1 }}
+										<a href='/donation/payment/anonym/bankTransfer/confirm'>{{ .T "Confirmation" }}</a>
+										{{ else }}
+										<a href='/donation/payment/user/bankTransfer/confirm'>{{ .T "Confirmation" }}</a>
+										{{ end }}
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 					<li class='navLandscapeSubItem' id='navLandscapeDonationList'>
 						<a href='/donation/list'>List</a>
