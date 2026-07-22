@@ -72,7 +72,7 @@
 			{
 				navLogout.addEventListener('click', () =>
 				{
-					moHub.sendUserLogout();
+					moHub.sendUserUserLogout();
 				});
 			}
 		}

@@ -27,16 +27,43 @@
         <div class='value' id='status'></div>
     </div>
 
-    {{ if or .Permission.DonationStatusRequest .Permission.DonationStatusApprove }}
+    {{ if or .Permission.DonationStatusRequest }}
     <div class='button spacer-top display-none' id='buttonRow'>
 
-        {{ if or .Permission.DonationStatusRequest .Permission.DonationStatusApprove }}
-        <button type='button' id='approveButton'>Approve</button>
-        <button type='button' id='rejectButton'>Reject</button>
+        {{ if .Permission.DonationStatusRequest }}
+        <button type='button' class='display-none' id='successButton'>{{ .T "Request Success" }}</button>
+        <button type='button' class='display-none' id='failButton'>{{ .T "Request Fail" }}</button>
+        {{ end }}
+
+        {{ if .Permission.DonationStatusApprove }}
+        <button type='button' class='display-none' id='approveButton'>{{ .T "Approve" }}</button>
+        <button type='button' class='display-none' id='rejectButton'>{{ .T "Reject" }}</button>
         {{ end }}
 
     </div>
     {{ end }}
 
 </div>
+<dialog id='failRejectDialog'>
+    <form id='failRejectForm'>
+        <div class='field'>
+            <div class='label'>Description</div>
+            <div>
+                <textarea id='descriptionInput' maxlength='255' required></textarea>
+            </div>
+        </div>
+        <div class='message spacer-top'>
+            <div id='failRejectMessage'>&nbsp;</div>
+        </div>
+        <div class='button spacer-top' id='buttonRow'>
+            {{ if .Permission.DonationStatusRequest }}
+            <button type='button' id='fail2Button' class='display-none'>Request Fail</button>
+            {{ end }}
+            {{ if .Permission.DonationStatusApprove }}
+            <button type='button' id='reject2Button' class='display-none'>Reject</button>
+            {{ end }}
+            <button type='button' id='failRejectCloseButton'>{{ .T "Close" }}</button>
+        </div>
+    </form>
+</dialog>
 {{ end }}

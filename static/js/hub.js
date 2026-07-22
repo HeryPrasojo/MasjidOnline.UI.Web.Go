@@ -58,16 +58,14 @@ const moHub = {};
     });
 
 
-    moHub.sendUserLogout = () =>
+    moHub.sendDonationDonationRequestFail = async (request) =>
     {
-        invoke("UserUserLogout");
+        return invoke("DonationDonationRequestFail", request);
     }
 
 
     moHub.sendUserInternalAdd = async (request) =>
     {
-        await addRequestCaptchaToken(request, 'addInternalUser');
-
         return invoke("UserInternalAdd", request);
     }
 
@@ -105,6 +103,12 @@ const moHub = {};
     moHub.sendUserInternalPermissionUpdate = (request) =>
     {
         return invoke("UserInternalPermissionUpdate", request);
+    }
+
+
+    moHub.sendUserUserLogout = () =>
+    {
+        invoke("UserUserLogout");
     }
 
 

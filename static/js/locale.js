@@ -4,7 +4,7 @@ const moLocale = {
     {
         const locale = moCookie.getApplicationCulture();
 
-        return dict[locale || 0];
+        return dict[locale || 0] || dict[0];
     },
 };
 
