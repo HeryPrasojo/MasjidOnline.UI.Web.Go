@@ -58,6 +58,11 @@ const moHub = {};
     });
 
 
+    moHub.sendDonationDonationRejectFail = async (request) =>
+    {
+        return invoke("DonationDonationRejectFail", request);
+    }
+
     moHub.sendDonationDonationRequestFail = async (request) =>
     {
         return invoke("DonationDonationRequestFail", request);

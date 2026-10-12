@@ -62,6 +62,10 @@
         const paymentElement = mo.getElementById('payment');
         const amountElement = mo.getElementById('amount');
         const statusElement = mo.getElementById('status');
+        const requestByRowElement = mo.getElementById('requestByRow');
+        const requestByElement = mo.getElementById('requestBy');
+        const requestDateTimeRowElement = mo.getElementById('requestDateTimeRow');
+        const requestDateTimeElement = mo.getElementById('requestDateTime');
 
         const buttonRowElement = mo.getElementById('buttonRow');
         const successButtonElement = mo.getElementById('successButton');
@@ -86,6 +90,8 @@
         paymentElement.innerHTML = data.PaymentTypeText;
         amountElement.innerHTML = data.Amount;
         statusElement.innerHTML = data.StatusText;
+        requestByElement.innerHTML = data.RequestBy;
+        requestDateTimeElement.innerHTML = data.RequestDateTime;
 
         errorMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
         errorMessageElement.classList.toggle("loading");
@@ -94,55 +100,121 @@
 
         if (data.Status == 2)
         {
-            successButtonElement.classList.remove("display-none");
-            failButtonElement.classList.remove("display-none");
+            if (successButtonElement) successButtonElement.classList.remove("display-none");
 
-            failButtonElement.addEventListener(
-                "click",
-                async function () 
-                {
-                    fail2ButtonElement.classList.remove("display-none");
-                    if (reject2ButtonElement) reject2ButtonElement.classList.add("display-none");
+            if (failButtonElement)
+            {
+                failButtonElement.classList.remove("display-none")
 
-                    failRejectDialogElement.showModal();
-                }
-            );
-
-            fail2ButtonElement.addEventListener(
-                "click",
-                async function () 
-                {
-                    if (!failRejectForm.reportValidity()) return;
-
-                    fail2ButtonElement.disabled = true;
-
-                    failRejectMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
-
-                    fail2ButtonElement.classList.toggle("loading");
-
-                    try
+                failButtonElement.addEventListener(
+                    "click",
+                    async function () 
                     {
-                        const json = await moHub.sendDonationDonationRequestFail({
-                            Description: descriptionInputElement.value,
-                            Id: id,
-                        });
+                        fail2ButtonElement.classList.remove("display-none");
+                        if (reject2ButtonElement) reject2ButtonElement.classList.add("display-none");
 
-                        if (json.ResultCode) return showCancelRejectError(json.ResultMessage);
-
-                        failRejectMessageElement.style.color = messageColor;
-                        failRejectMessageElement.textContent = moLocale.get(['Success. Reloading ...']);
-                        failRejectMessageElement.classList.toggle("loading");
-
-                        location.reload();
+                        failRejectDialogElement.showModal();
                     }
-                    catch (e)
+                );
+            };
+
+            if (fail2ButtonElement)
+            {
+                fail2ButtonElement.addEventListener(
+                    "click",
+                    async function () 
                     {
-                        showFailRejectError(e.message);
+                        if (!failRejectForm.reportValidity()) return;
+
+                        fail2ButtonElement.disabled = true;
+
+                        failRejectMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
+
+                        fail2ButtonElement.classList.toggle("loading");
+
+                        try
+                        {
+                            const json = await moHub.sendDonationDonationRequestFail({
+                                Description: descriptionInputElement.value,
+                                Id: id,
+                            });
+
+                            if (json.ResultCode) return showFailRejectError(json.ResultMessage);
+
+                            failRejectMessageElement.style.color = messageColor;
+                            failRejectMessageElement.textContent = moLocale.get(['Success. Reloading ...']);
+                            failRejectMessageElement.classList.toggle("loading");
+
+                            location.reload();
+                        }
+                        catch (e)
+                        {
+                            showFailRejectError(e.message);
+                        }
                     }
-                }
-            );
+                );
+            }
         }
+        else if (data.Status == 4)
+        {
+            requestByRowElement.classList.remove("display-none");
+            requestDateTimeRowElement.classList.remove("display-none");
 
+            if (approveButtonElement) approveButtonElement.classList.remove("display-none");
+
+            if (rejectButtonElement)
+            {
+                rejectButtonElement.classList.remove("display-none");
+
+                rejectButtonElement.addEventListener(
+                    "click",
+                    async function () 
+                    {
+                        reject2ButtonElement.classList.remove("display-none");
+                        if (fail2ButtonElement) fail2ButtonElement.classList.add("display-none");
+
+                        failRejectDialogElement.showModal();
+                    }
+                );
+            }
+
+            if (reject2ButtonElement)
+            {
+                reject2ButtonElement.addEventListener(
+                    "click",
+                    async function () 
+                    {
+                        if (!failRejectForm.reportValidity()) return;
+
+                        reject2ButtonElement.disabled = true;
+
+                        failRejectMessageElement.textContent = '\u00A0\u00A0\u00A0\u00A0';
+
+                        reject2ButtonElement.classList.toggle("loading");
+
+                        try
+                        {
+                            const json = await moHub.sendDonationDonationRejectFail({
+                                Description: descriptionInputElement.value,
+                                Id: id,
+                            });
+
+                            if (json.ResultCode) return showFailRejectError(json.ResultMessage);
+
+                            failRejectMessageElement.style.color = messageColor;
+                            failRejectMessageElement.textContent = moLocale.get(['Success. Reloading ...']);
+                            failRejectMessageElement.classList.toggle("loading");
+
+                            location.reload();
+                        }
+                        catch (e)
+                        {
+                            showFailRejectError(e.message);
+                        }
+                    }
+                );
+            }
+        }
 
 
         failRejectCloseButton.addEventListener('click', () =>

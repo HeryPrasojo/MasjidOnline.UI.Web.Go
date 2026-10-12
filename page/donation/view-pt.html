@@ -26,5 +26,52 @@
         <div class='label'>Status</div>
         <div class='value' id='status'></div>
     </div>
+    <div class='field display-none' id='requestByRow'>
+        <div class='label'>{{ .T "Request by" }}</div>
+        <div class='value' id='requestBy'></div>
+    </div>
+    <div class='field display-none' id='requestDateTimeRow'>
+        <div class='label'>{{ .T "Request date time" }}</div>
+        <div class='value' id='requestDateTime'></div>
+    </div>
+
+    {{ if or .Permission.DonationStatusRequest }}
+    <div class='button spacer-top display-none'>
+
+        {{ if .Permission.DonationStatusRequest }}
+        <button type='button' class='display-none' id='successButton'>{{ .T "Request Success" }}</button>
+        <button type='button' class='display-none' id='failButton'>{{ .T "Request Fail" }}</button>
+        {{ end }}
+
+        {{ if .Permission.DonationStatusApprove }}
+        <button type='button' class='display-none' id='approveButton'>{{ .T "Approve Request" }}</button>
+        <button type='button' class='display-none' id='rejectButton'>{{ .T "Reject Request" }}</button>
+        {{ end }}
+
+    </div>
+    {{ end }}
+
 </div>
+<dialog id='failRejectDialog'>
+    <form id='failRejectForm'>
+        <div class='field'>
+            <div class='label'>Description</div>
+            <div>
+                <textarea id='descriptionInput' maxlength='255' required></textarea>
+            </div>
+        </div>
+        <div class='message spacer-top'>
+            <div id='failRejectMessage'>&nbsp;</div>
+        </div>
+        <div class='button spacer-top' id='button2Row'>
+            {{ if .Permission.DonationStatusRequest }}
+            <button type='button' id='fail2Button' class='display-none'>Request Fail</button>
+            {{ end }}
+            {{ if .Permission.DonationStatusApprove }}
+            <button type='button' id='reject2Button' class='display-none'>Reject</button>
+            {{ end }}
+            <button type='button' id='failRejectCloseButton'>{{ .T "Close" }}</button>
+        </div>
+    </form>
+</dialog>
 {{ end }}
