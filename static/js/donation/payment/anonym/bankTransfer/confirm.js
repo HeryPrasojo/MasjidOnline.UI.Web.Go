@@ -28,7 +28,7 @@
         {
             const json = await moFetch.fetchRecommendationNote();
 
-            if (json.ResultCode) return await moDialog.showModal('Error: ' + json.ResultMessage);
+            if (json.ResultCode) return await moDialog.show('Error: ' + json.ResultMessage);
 
             recommendationNote = json.Data;
 
@@ -76,7 +76,10 @@
 
                 bankTransferSubmitElement.classList.toggle("loading");
 
-                moDialog.showModal('Confirmation submitted. Thank you!', () => location.href = '/donation/list');
+                moDialog.show({
+                    innerHtml: 'Confirmation submitted. Thank you!',
+                    onClose: () => location.href = '/donation/list',
+                });
             }
             catch (err)
             {

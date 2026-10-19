@@ -35,8 +35,12 @@
         <div class='value' id='requestDateTime'></div>
     </div>
 
+    <div class='buttonMessage spacer-top'>
+        <div id='buttonMessage'>&nbsp;</div>
+    </div>
+
     {{ if or .Permission.DonationStatusRequest }}
-    <div class='button spacer-top display-none'>
+    <div class='viewButton spacer-top display-none'>
 
         {{ if .Permission.DonationStatusRequest }}
         <button type='button' class='display-none' id='successButton'>{{ .T "Request Success" }}</button>

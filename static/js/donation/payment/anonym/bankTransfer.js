@@ -25,7 +25,7 @@
         {
             const json = await moFetch.fetchRecommendationNote();
 
-            if (json.ResultCode) return await moDialog.showModal('Error: ' + json.ResultMessage);
+            if (json.ResultCode) return await moDialog.show('Error: ' + json.ResultMessage);
 
             recommendationNote = json.Data;
 

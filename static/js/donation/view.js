@@ -67,6 +67,8 @@
         const requestDateTimeRowElement = mo.getElementById('requestDateTimeRow');
         const requestDateTimeElement = mo.getElementById('requestDateTime');
 
+        const buttonMessageElement = mo.getElementById('buttonMessage');
+
         const buttonRowElement = mo.getElementById('buttonRow');
         const successButtonElement = mo.getElementById('successButton');
         const failButtonElement = mo.getElementById('failButton');
@@ -160,7 +162,39 @@
             requestByRowElement.classList.remove("display-none");
             requestDateTimeRowElement.classList.remove("display-none");
 
-            if (approveButtonElement) approveButtonElement.classList.remove("display-none");
+            if (approveButtonElement)
+            {
+                approveButtonElement.classList.remove("display-none");
+
+                approveButtonElement.addEventListener(
+                    "click",
+                    async function () 
+                    {
+                        approveButtonElement.disabled = true;
+
+                        moDialog.show({
+                            type: 'confirmation',
+                            onClose: () =>
+                            {
+                                approveButtonElement.disabled = false;
+                            },
+                            onYes: async () =>
+                            {
+                                const json = await moHub.sendDonationDonationApproveFail({
+                                    Description: descriptionInputElement.value,
+                                    Id: id,
+                                });
+
+                                if (json.ResultCode) return showButtonError(json.ResultMessage);
+
+                                buttonMessageElement.style.color = messageColor;
+                                buttonMessageElement.textContent = moLocale.get(['Success. Reloading ...']);
+                                buttonMessageElement.classList.toggle("loading");
+                            }
+                        });
+                    }
+                );
+            }
 
             if (rejectButtonElement)
             {
@@ -227,6 +261,14 @@
         {
             failRejectMessageElement.textContent = e;
             failRejectMessageElement.style.color = 'red';
+
+            console.error(e);
+        }
+
+        function showButtonError(e)
+        {
+            buttonMessageElement.textContent = e;
+            buttonMessageElement.style.color = 'red';
 
             console.error(e);
         }

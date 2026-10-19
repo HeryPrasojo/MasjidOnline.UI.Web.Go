@@ -5,8 +5,8 @@
          min-width: 9em;
      }
 
-     .button,
-     .message
+     .viewButton,
+     .buttonMessage
      {
          margin-left: 9.5em;
      }
